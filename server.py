@@ -83,6 +83,7 @@ Message:
         self.end_headers()
         self.wfile.write(body)
 
+socketserver.TCPServer.allow_reuse_address = True
 with socketserver.TCPServer((HOST, PORT), Handler) as httpd:
     print(f"Serving on http://{HOST}:{PORT}")
     httpd.serve_forever()
