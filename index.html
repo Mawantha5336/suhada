@@ -613,23 +613,24 @@
             <div class="md:col-span-7">
                 <form id="contact-form" onsubmit="handleContact(event)" class="glass rounded-3xl p-12">
                     <div class="grid grid-cols-2 gap-8">
-                        <input id="name" type="text" placeholder="YOUR NAME" required class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
-                        <input id="company" type="text" placeholder="BUSINESS / COMPANY" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
+                        <input id="name" name="name" type="text" placeholder="YOUR NAME" required class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
+                        <input id="company" name="company" type="text" placeholder="BUSINESS / COMPANY" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
                     </div>
                     <div class="grid grid-cols-2 gap-8 mt-8">
-                        <input id="phone" type="text" placeholder="PHONE NUMBER" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
-                        <select id="service" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none text-slate-400">
+                        <input id="phone" name="phone" type="text" placeholder="PHONE NUMBER" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
+                        <select id="service" name="service" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none text-slate-400">
                             <option value="" class="bg-[#05050f]">SERVICE NEEDED</option>
-                            <option value="graphic-design" class="bg-[#05050f]">Graphic Design</option>
-                            <option value="offset-printing" class="bg-[#05050f]">Offset Printing</option>
-                            <option value="digital-printing" class="bg-[#05050f]">Digital Printing</option>
-                            <option value="screen-printing" class="bg-[#05050f]">Screen Printing</option>
-                            <option value="signage" class="bg-[#05050f]">Signage & Name Boards</option>
-                            <option value="other" class="bg-[#05050f]">Other</option>
+                            <option value="Graphic Design" class="bg-[#05050f]">Graphic Design</option>
+                            <option value="Offset Printing" class="bg-[#05050f]">Offset Printing</option>
+                            <option value="Digital Printing" class="bg-[#05050f]">Digital Printing</option>
+                            <option value="Screen Printing" class="bg-[#05050f]">Screen Printing</option>
+                            <option value="Signage & Name Boards" class="bg-[#05050f]">Signage & Name Boards</option>
+                            <option value="Other" class="bg-[#05050f]">Other</option>
                         </select>
                     </div>
-                    <textarea id="message" placeholder="DESCRIBE YOUR PROJECT (e.g. 500 business cards, logo design, event banner...)" rows="5" required class="mt-10 w-full bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none resize-none"></textarea>
-                    <button type="submit" class="magnetic mt-10 w-full py-7 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black text-xl font-semibold rounded-3xl flex justify-center items-center gap-x-4">
+                    <textarea id="message" name="message" placeholder="DESCRIBE YOUR PROJECT (e.g. 500 business cards, logo design, event banner...)" rows="5" required class="mt-10 w-full bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none resize-none"></textarea>
+                    <input type="hidden" name="_subject" value="New Enquiry — Suhada Graphics Website">
+                    <button type="submit" id="submit-btn" class="magnetic mt-10 w-full py-7 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black text-xl font-semibold rounded-3xl flex justify-center items-center gap-x-4">
                         SEND MY REQUEST <i class="fa-solid fa-paper-plane"></i>
                     </button>
                 </form>
@@ -738,17 +739,43 @@
 
         function navigateTo(section) { document.getElementById(section).scrollIntoView({ behavior: 'smooth' }); }
 
-        function handleContact(e) {
+        async function handleContact(e) {
             e.preventDefault();
             const form = document.getElementById('contact-form');
-            form.style.opacity = 0.4;
-            setTimeout(() => {
-                form.reset(); form.style.opacity = 1;
-                const success = document.createElement('div');
-                success.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#05050f; border:3px solid #00ff9f; padding:40px 60px; border-radius:30px; text-align:center; z-index:100000; box-shadow:0 0 80px #00ff9f;';
-                success.innerHTML = `<h3 style="font-size:2rem;font-weight:600;margin-bottom:1rem;">Request Received! 🎨</h3><p style="color:#94a3b8;">Thank you for reaching out to Suhada Graphics.<br>We'll send you a free quote within a few hours.</p><button onclick="this.parentElement.remove()" style="margin-top:2rem;padding:14px 40px;background:#00ff9f;color:#05050f;border-radius:9999px;font-weight:600;border:none;cursor:pointer;">Back to Site</button>`;
-                document.body.appendChild(success);
-            }, 900);
+            const btn = document.getElementById('submit-btn');
+
+            btn.disabled = true;
+            btn.innerHTML = `SENDING... <i class="fa-solid fa-spinner fa-spin"></i>`;
+            form.style.opacity = 0.6;
+
+            const data = new FormData(form);
+
+            try {
+                const response = await fetch('https://formspree.io/suhagraphics145@gmail.com', {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                form.style.opacity = 1;
+                btn.disabled = false;
+                btn.innerHTML = `SEND MY REQUEST <i class="fa-solid fa-paper-plane"></i>`;
+
+                if (response.ok) {
+                    form.reset();
+                    const success = document.createElement('div');
+                    success.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#05050f; border:3px solid #00ff9f; padding:40px 60px; border-radius:30px; text-align:center; z-index:100000; box-shadow:0 0 80px #00ff9f;';
+                    success.innerHTML = `<h3 style="font-size:2rem;font-weight:600;margin-bottom:1rem;">Request Sent! 🎨</h3><p style="color:#94a3b8;">Thank you for reaching out to Suhada Graphics.<br>We'll get back to you with a free quote shortly.</p><button onclick="this.parentElement.remove()" style="margin-top:2rem;padding:14px 40px;background:#00ff9f;color:#05050f;border-radius:9999px;font-weight:600;border:none;cursor:pointer;">Back to Site</button>`;
+                    document.body.appendChild(success);
+                } else {
+                    alert('Something went wrong. Please call us directly on 011 2860991 or WhatsApp 077 6272433.');
+                }
+            } catch (err) {
+                form.style.opacity = 1;
+                btn.disabled = false;
+                btn.innerHTML = `SEND MY REQUEST <i class="fa-solid fa-paper-plane"></i>`;
+                alert('Could not send. Please call us on 011 2860991 or WhatsApp 077 6272433.');
+            }
         }
 
         window.onload = () => {
