@@ -10,125 +10,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
-         :root {
-            --primary: #00ff9f;
-        }
-        
-        * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, transform, box-shadow;
-            transition-duration: 0.3s;
-        }
-        
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-        
-        .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        .hero-bg {
-            background: radial-gradient(circle at 30% 20%, #0a0a2e 0%, #000011 70%);
-        }
-        
-        .glass {
-            background: rgba(10, 10, 30, 0.65);
-            backdrop-filter: blur(20px);
-        }
-        
-        .neon-glow {
-            text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary), 0 0 50px #ff00ff;
-        }
-        
-        .section-header {
-            position: relative;
-        }
-        
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, #00ff9f, #ff00ff);
-            border-radius: 9999px;
-        }
-        /* Parallax Layers */
-        
-        .parallax-layer {
-            transition: transform 0.1s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        /* Card Tilt */
-        
-        .tilt-card {
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transform-style: preserve-3d;
-        }
-        
-        .tilt-card:hover {
-            transform: perspective(1200px) rotateX(12deg) rotateY(12deg) scale(1.05);
-            box-shadow: 0 40px 80px -20px rgb(0 255 159 / 0.4);
-        }
-        /* Magnetic Button */
-        
-        .magnetic {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .magnetic::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-        }
-        
-        .magnetic:hover::before {
-            animation: magneticPulse 1.2s ease-out forwards;
-        }
-        
-        @keyframes magneticPulse {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 0.6;
-            }
-            100% {
-                width: 300px;
-                height: 300px;
-                opacity: 0;
-            }
-        }
-        /* Scroll Reveal */
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-        }
-        
-        .revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Canvas Background */
-        
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
+        :root { --primary: #00ff9f; }
+        * { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, transform, box-shadow; transition-duration: 0.3s; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        .hero-bg { background: radial-gradient(circle at 30% 20%, #0a0a2e 0%, #000011 70%); }
+        .glass { background: rgba(10, 10, 30, 0.65); backdrop-filter: blur(20px); }
+        .neon-glow { text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary), 0 0 50px #ff00ff; }
+        .section-header { position: relative; }
+        .section-header::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(to right, #00ff9f, #ff00ff); border-radius: 9999px; }
+        .parallax-layer { transition: transform 0.1s cubic-bezier(0.25, 0.1, 0.25, 1); }
+        .tilt-card { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); transform-style: preserve-3d; }
+        .tilt-card:hover { transform: perspective(1200px) rotateX(12deg) rotateY(12deg) scale(1.05); box-shadow: 0 40px 80px -20px rgb(0 255 159 / 0.4); }
+        .magnetic { position: relative; overflow: hidden; }
+        .magnetic::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%); border-radius: 50%; transform: translate(-50%, -50%); opacity: 0; }
+        .magnetic:hover::before { animation: magneticPulse 1.2s ease-out forwards; }
+        @keyframes magneticPulse { 0% { width:0; height:0; opacity:0.6; } 100% { width:300px; height:300px; opacity:0; } }
+        .reveal { opacity: 0; transform: translateY(60px); }
+        .revealed { opacity: 1; transform: translateY(0); }
+        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .service-item { transition: all 0.2s; }
+        .service-item:hover { color: #00ff9f; transform: translateX(6px); }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1.5rem; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 1.5rem; }
+        .client-logo { filter: grayscale(100%) brightness(0.6); transition: all 0.3s; }
+        .client-logo:hover { filter: grayscale(0%) brightness(1); }
+        .pillar-card { border-left: 3px solid transparent; transition: all 0.3s; }
+        .pillar-card:hover { border-left-color: #00ff9f; padding-left: 1.5rem; }
     </style>
 </head>
 
@@ -137,131 +45,96 @@
     <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
         <div class="max-w-screen-2xl mx-auto px-8 py-4 flex items-center justify-between">
-            <!-- Logo -->
             <div class="flex items-center gap-x-3">
                 <img src="/logo.jpg" alt="Suhada Graphics Logo" class="w-12 h-12 rounded-full object-cover border-2 border-[#00ff9f]/40">
                 <div>
                     <h1 class="heading-font text-xl tracking-tight neon-glow leading-none">Suhada Graphics</h1>
-                    <p class="text-[10px] text-slate-400 tracking-widest uppercase">Total Printing & Design</p>
+                    <p class="text-[10px] text-slate-400 tracking-widest uppercase">Total Printing & Graphic Design</p>
                 </div>
             </div>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
                 <a onclick="navigateTo('home')" class="hover:text-[#00ff9f] cursor-pointer">Home</a>
-                <a onclick="navigateTo('solutions')" class="hover:text-[#00ff9f] cursor-pointer">Services</a>
-                <a onclick="navigateTo('work')" class="hover:text-[#00ff9f] cursor-pointer">Portfolio</a>
                 <a onclick="navigateTo('about')" class="hover:text-[#00ff9f] cursor-pointer">About</a>
-                <a onclick="navigateTo('contact')" class="hover:text-[#00ff9f] cursor-pointer">Get a Quote</a>
+                <a onclick="navigateTo('solutions')" class="hover:text-[#00ff9f] cursor-pointer">Services</a>
+                <a onclick="navigateTo('videos')" class="hover:text-[#00ff9f] cursor-pointer">Videos</a>
+                <a onclick="navigateTo('clients')" class="hover:text-[#00ff9f] cursor-pointer">Clients</a>
+                <a onclick="navigateTo('contact')" class="hover:text-[#00ff9f] cursor-pointer">Contact</a>
             </div>
-
-            <div class="flex items-center gap-x-5">
-                <button onclick="launchDemo()" class="magnetic px-8 py-3.5 text-sm font-semibold border border-[#00ff9f]/40 hover:border-[#00ff9f] rounded-3xl flex items-center gap-x-2 text-[#00ff9f]">
-                    <i class="fa-solid fa-images"></i>
-                    OUR WORK
+            <div class="flex items-center gap-x-4">
+                <button onclick="navigateTo('contact')" class="magnetic px-7 py-3 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black font-semibold rounded-3xl flex items-center gap-x-2 shadow-xl shadow-[#00ff9f]/40 text-sm">
+                    GET A QUOTE <i class="fa-solid fa-arrow-right"></i>
                 </button>
-
-                <button onclick="navigateTo('contact')" class="magnetic px-8 py-3.5 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black font-semibold rounded-3xl flex items-center gap-x-3 shadow-xl shadow-[#00ff9f]/50">
-                    GET A QUOTE
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-
-                <!-- Mobile Menu -->
                 <button onclick="toggleMobile()" class="md:hidden text-3xl">
                     <i id="menu-icon" class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
-
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-8 py-6 glass border-t">
-            <div class="flex flex-col gap-y-6 text-lg">
-                <a onclick="navigateTo('home');toggleMobile()" class="py-2">Home</a>
-                <a onclick="navigateTo('solutions');toggleMobile()" class="py-2">Services</a>
-                <a onclick="navigateTo('work');toggleMobile()" class="py-2">Portfolio</a>
-                <a onclick="navigateTo('about');toggleMobile()" class="py-2">About</a>
-                <a onclick="navigateTo('contact');toggleMobile()" class="py-2">Get a Quote</a>
+            <div class="flex flex-col gap-y-5 text-lg">
+                <a onclick="navigateTo('home');toggleMobile()" class="py-1">Home</a>
+                <a onclick="navigateTo('about');toggleMobile()" class="py-1">About</a>
+                <a onclick="navigateTo('solutions');toggleMobile()" class="py-1">Services</a>
+                <a onclick="navigateTo('videos');toggleMobile()" class="py-1">Videos</a>
+                <a onclick="navigateTo('clients');toggleMobile()" class="py-1">Clients</a>
+                <a onclick="navigateTo('contact');toggleMobile()" class="py-1">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO with PARALLAX + Canvas Particles -->
+    <!-- HERO -->
     <section id="home" class="hero-bg min-h-screen relative flex items-center pt-20 overflow-hidden">
-
-        <!-- Canvas Background -->
         <canvas id="hero-canvas" class="absolute inset-0"></canvas>
-
-        <!-- Parallax Layers -->
         <div class="max-w-screen-2xl mx-auto px-8 relative z-10 grid md:grid-cols-12 gap-12 items-center">
-
-            <!-- Left Content -->
             <div class="md:col-span-7 parallax-layer" data-speed="0.2">
                 <div class="inline-flex px-6 py-2 bg-white/10 backdrop-blur-md text-xs font-semibold rounded-3xl border border-[#00ff9f]/30 items-center gap-x-3 mb-8">
                     <div class="w-2 h-2 bg-[#00ff9f] rounded-full animate-ping"></div>
                     NOW ACCEPTING ORDERS — COLOMBO, SRI LANKA
                 </div>
-
                 <h1 class="heading-font text-6xl md:text-[72px] leading-none tracking-[-4px] neon-glow mb-6">
                     DESIGN THAT<br>MAKES YOUR<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00ff9f] via-[#ff00ff] to-[#00ff9f]">BRAND SHINE</span>
                 </h1>
-
                 <p class="text-xl md:text-2xl text-slate-400 max-w-xl mb-12">
-                    Premium graphic design & printing services. From business cards to large-format banners — we craft visuals that demand attention.
+                    Sri Lanka's leading total printing & graphic design studio. Quality, Speed & Peace of Mind — guaranteed.
                 </p>
-
-                <div class="flex gap-x-4">
-                    <button onclick="navigateTo('contact')" class="magnetic px-10 py-7 text-xl font-semibold rounded-3xl bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black flex items-center gap-x-4 hover:shadow-2xl hover:shadow-[#ff00ff]/40">
-                        START YOUR PROJECT
-                        <span class="text-3xl">🎨</span>
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="navigateTo('contact')" class="magnetic px-10 py-6 text-xl font-semibold rounded-3xl bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black flex items-center gap-x-4 hover:shadow-2xl hover:shadow-[#ff00ff]/40">
+                        START YOUR PROJECT <span class="text-2xl">🎨</span>
                     </button>
-
-                    <button onclick="launchDemo()" class="px-8 py-7 border-2 border-white/30 hover:border-white rounded-3xl text-xl flex items-center gap-x-4">
-                        <i class="fa-solid fa-images text-3xl"></i>
-                        VIEW PORTFOLIO
+                    <button onclick="navigateTo('solutions')" class="px-8 py-6 border-2 border-white/30 hover:border-white rounded-3xl text-xl flex items-center gap-x-4">
+                        <i class="fa-solid fa-list text-2xl"></i> OUR SERVICES
                     </button>
                 </div>
-
-                <div class="mt-16 flex items-center gap-x-8 text-sm">
-                    <div>Trusted for</div>
-                    <div class="flex items-center gap-x-6 opacity-70 text-slate-300 font-medium">
-                        <span>Branding</span>
-                        <span>•</span>
-                        <span>Print</span>
-                        <span>•</span>
-                        <span>Signage</span>
-                        <span>•</span>
-                        <span>Packaging</span>
-                    </div>
+                <div class="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-slate-400">
+                    <span class="text-white font-medium">Specialising in:</span>
+                    <span>Offset Printing</span><span>•</span>
+                    <span>Digital Printing</span><span>•</span>
+                    <span>Screen Printing</span><span>•</span>
+                    <span>Graphic Design</span>
                 </div>
             </div>
-
-            <!-- Right Parallax Visual -->
             <div class="md:col-span-5 relative parallax-layer" data-speed="0.6">
                 <div class="relative mx-auto max-w-md">
-                    <!-- Floating Orb -->
                     <div class="absolute -top-12 -left-12 w-64 h-64 bg-gradient-to-br from-[#00ff9f]/30 to-[#ff00ff]/30 rounded-full blur-3xl animate-pulse"></div>
-
-                    <div class="tilt-card bg-gradient-to-br from-[#111133] to-[#1a1a44] border border-[#00ff9f]/20 rounded-3xl p-8 shadow-2xl relative">
-                        <div class="flex justify-between mb-8">
-                            <div class="text-[#00ff9f] font-medium">LATEST PROJECT</div>
-                            <div class="px-4 py-1 text-xs rounded-full bg-[#ff00ff]/20 text-[#ff00ff]">DELIVERED</div>
+                    <div class="tilt-card bg-gradient-to-br from-[#111133] to-[#1a1a44] border border-[#00ff9f]/20 rounded-3xl p-8 shadow-2xl">
+                        <div class="flex justify-between mb-6">
+                            <div class="text-[#00ff9f] font-medium text-sm">OUR PROMISE</div>
+                            <div class="px-3 py-1 text-xs rounded-full bg-[#ff00ff]/20 text-[#ff00ff]">SINCE 2010+</div>
                         </div>
-
                         <div class="flex items-center justify-center mb-6">
-                            <img src="/logo.jpg" alt="Suhada Graphics" class="w-32 h-32 rounded-full object-cover border-4 border-[#00ff9f]/30 shadow-2xl shadow-[#00ff9f]/20">
+                            <img src="/logo.jpg" alt="Suhada Graphics" class="w-28 h-28 rounded-full object-cover border-4 border-[#00ff9f]/30 shadow-2xl shadow-[#00ff9f]/20">
                         </div>
-                        <h4 class="text-3xl font-semibold">Corporate Brand Identity</h4>
-                        <p class="text-slate-400 mt-2">Full branding package • 48hr turnaround • 100% satisfaction</p>
-
-                        <div class="mt-12 h-2 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] rounded-full relative overflow-hidden">
-                            <div class="absolute h-full w-full bg-white animate-[pulse_1.5s_infinite]"></div>
+                        <div class="grid grid-cols-3 gap-4 mt-6 text-center">
+                            <div><div class="text-3xl font-bold text-[#00ff9f]">500+</div><div class="text-xs text-slate-400 mt-1">Clients</div></div>
+                            <div><div class="text-3xl font-bold text-white">48hr</div><div class="text-xs text-slate-400 mt-1">Turnaround</div></div>
+                            <div><div class="text-3xl font-bold text-[#ff00ff]">100%</div><div class="text-xs text-slate-400 mt-1">Satisfaction</div></div>
+                        </div>
+                        <div class="mt-8 h-2 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] rounded-full overflow-hidden">
+                            <div class="h-full w-full bg-white/20 animate-pulse"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Scroll Indicator -->
         <div class="absolute bottom-12 left-1/2 flex flex-col items-center text-xs tracking-widest z-20">
             SCROLL TO EXPLORE
             <i class="fa-solid fa-chevron-down mt-2 animate-bounce text-[#00ff9f]"></i>
@@ -270,7 +143,7 @@
 
     <!-- TRUST BAR -->
     <div class="py-8 border-b border-white/10 bg-black/60">
-        <div class="max-w-screen-2xl mx-auto px-8 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-slate-400 text-sm font-medium">
+        <div class="max-w-screen-2xl mx-auto px-8 flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-slate-400 text-sm font-medium">
             <div>10+ YEARS OF EXCELLENCE</div>
             <div>500+ HAPPY CLIENTS</div>
             <div>FAST 24–48HR TURNAROUND</div>
@@ -279,75 +152,273 @@
         </div>
     </div>
 
+    <!-- ABOUT -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-8 py-28">
+        <div class="grid md:grid-cols-12 gap-16 items-start">
+            <div class="md:col-span-6 reveal">
+                <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">About Us</div>
+                <h2 class="heading-font text-5xl tracking-[-2px] mb-8">Sri Lanka's leading printing partner</h2>
+                <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                    We, <strong class="text-white">Suhada Graphics</strong>, as the most leading competitors for the innovative productions in all your needs of printing, have won a wider recognition over the years, for maintaining the overall quality in business.
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    Since the period of technological advancement in the field of printing in Sri Lanka, we have upgraded all our equipment and human resource in order to offer you the best work in all-round printing jobs in time; with no words of excuses for any sort of delay or complain, as we firmly believe what should come in return is only you and not the product.
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    Our product is always cost effective to satisfy and exceed your expectation at the minimum possible cost. Our competitiveness in the field of printing will bring you the <strong class="text-[#00ff9f]">PEACE OF MIND</strong>, exceeding your product and/or service expectations by delighting you. With us, you always win.
+                </p>
+
+                <div class="mt-12 grid grid-cols-2 gap-6">
+                    <div class="glass rounded-2xl p-6 border border-white/10">
+                        <div class="text-[#00ff9f] text-2xl mb-2"><i class="fa-solid fa-eye"></i></div>
+                        <h4 class="font-semibold text-lg mb-2">Vision</h4>
+                        <p class="text-slate-400 text-sm">To become the number one in all qualitative printing solutions.</p>
+                    </div>
+                    <div class="glass rounded-2xl p-6 border border-white/10">
+                        <div class="text-[#ff00ff] text-2xl mb-2"><i class="fa-solid fa-bullseye"></i></div>
+                        <h4 class="font-semibold text-lg mb-2">Mission</h4>
+                        <p class="text-slate-400 text-sm">Satisfying customer expectations at the minimum cost.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 reveal">
+                <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-6">Our Core Pillars</div>
+                <div class="space-y-5">
+                    <div class="pillar-card glass rounded-2xl p-5 border border-white/10">
+                        <h4 class="font-semibold text-[#00ff9f] mb-2">QUALITY</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Quality is your perception of the value of our work output. Quality is being Creative, Innovative, Fluid and Forthright — bringing the best value for your money.</p>
+                    </div>
+                    <div class="pillar-card glass rounded-2xl p-5 border border-white/10">
+                        <h4 class="font-semibold text-[#ff00ff] mb-2">IMPRESSION</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">First impression lasts. We are almost dedicated to bring your product a unique impression while continuing to secure our interest of securing the impression of us in you.</p>
+                    </div>
+                    <div class="pillar-card glass rounded-2xl p-5 border border-white/10">
+                        <h4 class="font-semibold text-[#00ff9f] mb-2">SPEED</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Speed is the key marketing tool. We represent the true throughput speed performance of which no other competitor can offer.</p>
+                    </div>
+                    <div class="pillar-card glass rounded-2xl p-5 border border-white/10">
+                        <h4 class="font-semibold text-[#ff00ff] mb-2">TIME</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Time management encompasses a wide scope of activities — planning, allocating, and setting goals to bring your order from art completion to delivery on time.</p>
+                    </div>
+                    <div class="pillar-card glass rounded-2xl p-5 border border-white/10">
+                        <h4 class="font-semibold text-[#00ff9f] mb-2">IMAGE</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Image is the general and public perception of a company. Each of our products is a guarantee of our contribution to the complex symbol which is the brand image that depicts our excellence and your expectation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SERVICES -->
-    <section id="solutions" class="max-w-screen-2xl mx-auto px-8 py-28">
-        <div class="flex justify-between mb-16">
-            <h2 class="heading-font text-5xl tracking-[-2px]">Services built for your brand</h2>
-            <button onclick="navigateTo('contact')" class="flex items-center text-[#00ff9f] font-semibold gap-x-2 text-lg">
-                GET A CUSTOM QUOTE <i class="fa-solid fa-arrow-right"></i>
-            </button>
+    <section id="solutions" class="py-28 bg-black/40">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">What We Offer</div>
+                <h2 class="heading-font text-5xl tracking-[-2px] mb-4">Our Services</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">A complete range of printing and design solutions under one roof — from concept to delivery.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Graphic Design -->
+                <div class="tilt-card reveal glass rounded-3xl p-8 border border-white/10 hover:border-[#00ff9f]">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00ff9f]/20 to-[#00ff9f]/5 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-pen-nib text-2xl text-[#00ff9f]"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Computer Typesetting & Graphic Design</h3>
+                    <p class="text-slate-400 text-sm mb-6">Professional design for all your print and digital needs — logos, layouts, branding and more.</p>
+                    <div class="text-xs text-[#00ff9f] tracking-widest">BRANDING • LAYOUTS • ARTWORK</div>
+                </div>
+
+                <!-- Offset Printing -->
+                <div class="tilt-card reveal glass rounded-3xl p-8 border border-white/10 hover:border-[#ff00ff]">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#ff00ff]/20 to-[#ff00ff]/5 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-print text-2xl text-[#ff00ff]"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Offset Printing</h3>
+                    <ul class="text-slate-400 text-sm space-y-1 columns-2">
+                        <li class="service-item">Visiting Cards</li>
+                        <li class="service-item">Annual Reports</li>
+                        <li class="service-item">Letter Heads</li>
+                        <li class="service-item">Leaflets</li>
+                        <li class="service-item">Brochures</li>
+                        <li class="service-item">Magazines</li>
+                        <li class="service-item">All kind of Books</li>
+                        <li class="service-item">News Letters</li>
+                        <li class="service-item">Carbonize Books</li>
+                        <li class="service-item">Invoice Books</li>
+                        <li class="service-item">Voucher Pads</li>
+                        <li class="service-item">Note Pads</li>
+                        <li class="service-item">Receipt Books</li>
+                        <li class="service-item">Hand Bills</li>
+                        <li class="service-item">File Covers</li>
+                        <li class="service-item">Posters</li>
+                        <li class="service-item">Ticket Books</li>
+                        <li class="service-item">Stickers</li>
+                        <li class="service-item">Boxes</li>
+                        <li class="service-item">Paper Bags</li>
+                        <li class="service-item">Greeting Cards</li>
+                        <li class="service-item">Wedding Cards</li>
+                        <li class="service-item">Certificates</li>
+                        <li class="service-item">Garment Tags</li>
+                    </ul>
+                    <div class="mt-6 text-xs text-[#ff00ff] tracking-widest">24 PRODUCTS AVAILABLE</div>
+                </div>
+
+                <!-- Digital Printing -->
+                <div class="tilt-card reveal glass rounded-3xl p-8 border border-white/10 hover:border-[#00ff9f]">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00ff9f]/20 to-[#00ff9f]/5 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-display text-2xl text-[#00ff9f]"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Digital Printing</h3>
+                    <ul class="text-slate-400 text-sm space-y-2">
+                        <li class="service-item">Hoardings</li>
+                        <li class="service-item">Light Boxes</li>
+                        <li class="service-item">Dealer Boards</li>
+                        <li class="service-item">Display Boards</li>
+                        <li class="service-item">Sign Boards</li>
+                        <li class="service-item">Flex Banners</li>
+                        <li class="service-item">Roll-up Banners</li>
+                        <li class="service-item">Canvas Prints</li>
+                    </ul>
+                    <div class="mt-6 text-xs text-[#00ff9f] tracking-widest">LARGE FORMAT SPECIALISTS</div>
+                </div>
+
+                <!-- Screen Printing & More -->
+                <div class="tilt-card reveal glass rounded-3xl p-8 border border-white/10 hover:border-[#ff00ff]">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#ff00ff]/20 to-[#ff00ff]/5 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-layer-group text-2xl text-[#ff00ff]"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Screen Printing & More</h3>
+                    <ul class="text-slate-400 text-sm space-y-2 mb-6">
+                        <li class="service-item">Textile Printing</li>
+                        <li class="service-item">Computer Printed Items</li>
+                        <li class="service-item">Banners & Panniers</li>
+                        <li class="service-item">Bags</li>
+                        <li class="service-item">Plastic Items</li>
+                        <li class="service-item">Caps & T-Shirts</li>
+                        <li class="service-item">Trade Items</li>
+                    </ul>
+                    <div class="border-t border-white/10 pt-4">
+                        <div class="text-white font-semibold text-sm mb-2">Brass & Stainless Steel</div>
+                        <p class="text-slate-400 text-xs">Premium name boards and plaques for offices, institutions & more.</p>
+                    </div>
+                    <div class="mt-4 text-xs text-[#ff00ff] tracking-widest">SPECIALTY ITEMS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEOS SECTION -->
+    <section id="videos" class="max-w-screen-2xl mx-auto px-8 py-28">
+        <div class="text-center mb-16">
+            <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">See It In Action</div>
+            <h2 class="heading-font text-5xl tracking-[-2px] mb-4">Our Services In Action</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Watch how our printing and design processes work — from raw materials to your finished product.</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="tilt-card glass rounded-3xl p-8 border border-white/10 hover:border-[#00ff9f]">
-                <div class="text-7xl mb-6">🎨</div>
-                <h3 class="text-3xl font-semibold mb-3">Graphic Design</h3>
-                <p class="text-slate-400">Logos, brand identities, social media graphics, flyers, brochures, and more — crafted to make you unforgettable.</p>
-                <div class="mt-12 text-xs text-[#00ff9f]">LOGOS • BRANDING • SOCIAL MEDIA</div>
+            <div class="reveal">
+                <div class="video-wrapper border border-[#00ff9f]/20 shadow-2xl shadow-[#00ff9f]/10">
+                    <iframe src="https://www.youtube.com/embed/jXPDiHzJSSo" title="Offset Printing Process" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+                <div class="mt-4 text-center">
+                    <h4 class="font-semibold text-lg">Offset Printing Process</h4>
+                    <p class="text-slate-400 text-sm mt-1">How professional offset printing works</p>
+                </div>
             </div>
-
-            <div class="tilt-card glass rounded-3xl p-8 border border-white/10 hover:border-[#ff00ff]">
-                <div class="text-7xl mb-6">🖨️</div>
-                <h3 class="text-3xl font-semibold mb-3">Total Printing</h3>
-                <p class="text-slate-400">Business cards, banners, stickers, packaging, t-shirts, and large-format prints — premium quality on every sheet.</p>
-                <div class="mt-12 text-xs text-[#ff00ff]">OFFSET • DIGITAL • LARGE FORMAT</div>
+            <div class="reveal">
+                <div class="video-wrapper border border-[#ff00ff]/20 shadow-2xl shadow-[#ff00ff]/10">
+                    <iframe src="https://www.youtube.com/embed/OFd2n3DFPiI" title="Screen Printing" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+                <div class="mt-4 text-center">
+                    <h4 class="font-semibold text-lg">Screen Printing Explained</h4>
+                    <p class="text-slate-400 text-sm mt-1">The screen printing technique step by step</p>
+                </div>
             </div>
-
-            <div class="tilt-card glass rounded-3xl p-8 border border-white/10 hover:border-[#00ff9f]">
-                <div class="text-7xl mb-6">📦</div>
-                <h3 class="text-3xl font-semibold mb-3">Packaging & Signage</h3>
-                <p class="text-slate-400">Custom product packaging, retail signage, banners, and outdoor displays that turn heads and drive sales.</p>
-                <div class="mt-12 text-xs text-[#00ff9f]">PACKAGING • BANNERS • SIGNAGE</div>
+            <div class="reveal">
+                <div class="video-wrapper border border-[#00ff9f]/20 shadow-2xl shadow-[#00ff9f]/10">
+                    <iframe src="https://www.youtube.com/embed/0UvkKUwGMtU" title="Digital Printing & Graphic Design" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+                <div class="mt-4 text-center">
+                    <h4 class="font-semibold text-lg">Digital Printing & Design</h4>
+                    <p class="text-slate-400 text-sm mt-1">Modern digital printing technology</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO -->
-    <section id="work" class="py-28 bg-black/40">
+    <!-- CLIENTS SECTION -->
+    <section id="clients" class="py-28 bg-black/40">
         <div class="max-w-screen-2xl mx-auto px-8">
-            <h2 class="heading-font text-center text-5xl mb-4">Our recent work</h2>
-            <p class="text-center text-slate-400 max-w-md mx-auto">Real projects. Real impact. Delivered with precision.</p>
+            <div class="text-center mb-16">
+                <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">Trusted By</div>
+                <h2 class="heading-font text-5xl tracking-[-2px] mb-4">Our Valued Clients</h2>
+                <p class="text-slate-400 max-w-lg mx-auto">We are proud to have served hundreds of businesses, institutions, and individuals across Sri Lanka and beyond.</p>
+            </div>
 
-            <div class="grid md:grid-cols-4 gap-6 mt-16">
-                <div class="tilt-card bg-gradient-to-br from-[#1a0033] to-[#001a33] rounded-3xl p-8 border border-transparent hover:border-[#ff00ff]/40">
-                    <div class="h-64 flex items-end">
+            <div class="grid md:grid-cols-4 gap-6 mb-16">
+                <div class="tilt-card reveal glass rounded-3xl p-6 border border-white/10 hover:border-[#00ff9f] text-center">
+                    <div class="text-5xl mb-4">🏦</div>
+                    <h4 class="font-semibold">Banks & Finance</h4>
+                    <p class="text-slate-400 text-sm mt-2">Leading financial institutions trusting us for stationery, annual reports & marketing materials.</p>
+                </div>
+                <div class="tilt-card reveal glass rounded-3xl p-6 border border-white/10 hover:border-[#ff00ff] text-center">
+                    <div class="text-5xl mb-4">🏫</div>
+                    <h4 class="font-semibold">Schools & Universities</h4>
+                    <p class="text-slate-400 text-sm mt-2">Educational institutions for prospectuses, certificates, ID cards, and event materials.</p>
+                </div>
+                <div class="tilt-card reveal glass rounded-3xl p-6 border border-white/10 hover:border-[#00ff9f] text-center">
+                    <div class="text-5xl mb-4">🏥</div>
+                    <h4 class="font-semibold">Healthcare & Pharma</h4>
+                    <p class="text-slate-400 text-sm mt-2">Hospitals and pharmaceutical companies for prescription pads, packaging, and signage.</p>
+                </div>
+                <div class="tilt-card reveal glass rounded-3xl p-6 border border-white/10 hover:border-[#ff00ff] text-center">
+                    <div class="text-5xl mb-4">🏬</div>
+                    <h4 class="font-semibold">Retail & FMCG</h4>
+                    <p class="text-slate-400 text-sm mt-2">Supermarkets, brands and retail chains for packaging, POS materials, and branding.</p>
+                </div>
+            </div>
+
+            <!-- Client Testimonials -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="reveal glass rounded-3xl p-8 border border-white/10">
+                    <div class="flex gap-x-1 text-[#00ff9f] mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Suhada Graphics delivered our annual reports with exceptional quality and on time. Their attention to detail is unmatched in Colombo."</p>
+                    <div class="flex items-center gap-x-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#00ff9f] to-[#ff00ff] flex items-center justify-center font-bold text-black">A</div>
                         <div>
-                            <div class="uppercase text-xs mb-2 text-[#ff00ff]">CORPORATE BRANDING</div>
-                            <div class="text-3xl">Full brand identity & stationery for a Colombo law firm</div>
+                            <div class="font-semibold text-sm">Ashan Fernando</div>
+                            <div class="text-slate-400 text-xs">Finance Director, Colombo</div>
                         </div>
                     </div>
                 </div>
-                <div class="tilt-card bg-gradient-to-br from-[#00331a] to-[#001a33] rounded-3xl p-8 border border-transparent hover:border-[#00ff9f]/40">
-                    <div class="h-64 flex items-end">
+                <div class="reveal glass rounded-3xl p-8 border border-white/10">
+                    <div class="flex gap-x-1 text-[#00ff9f] mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"We have been using Suhada Graphics for all our event banners and printing needs for over 5 years. Always reliable, always excellent quality."</p>
+                    <div class="flex items-center gap-x-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff00ff] to-[#00ff9f] flex items-center justify-center font-bold text-black">P</div>
                         <div>
-                            <div class="uppercase text-xs mb-2 text-[#00ff9f]">EVENT PRINTING</div>
-                            <div class="text-3xl">Large-format banners & collateral for national expo</div>
+                            <div class="font-semibold text-sm">Priya Wickramasinghe</div>
+                            <div class="text-slate-400 text-xs">Marketing Manager, Colombo</div>
                         </div>
                     </div>
                 </div>
-                <div class="tilt-card bg-gradient-to-br from-[#331a00] to-[#1a0033] rounded-3xl p-8 border border-transparent hover:border-[#ff00ff]/40">
-                    <div class="h-64 flex items-end">
-                        <div>
-                            <div class="uppercase text-xs mb-2 text-[#ff00ff]">PRODUCT PACKAGING</div>
-                            <div class="text-3xl">Custom packaging design for local F&B brand</div>
-                        </div>
+                <div class="reveal glass rounded-3xl p-8 border border-white/10">
+                    <div class="flex gap-x-1 text-[#00ff9f] mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                </div>
-                <div class="tilt-card bg-gradient-to-br from-[#001a33] to-[#00331a] rounded-3xl p-8 border border-transparent hover:border-[#00ff9f]/40">
-                    <div class="h-64 flex items-end">
+                    <p class="text-slate-300 italic mb-6">"Their screen printing for our T-shirt brand is outstanding. Fast turnaround, vibrant colours, and very competitive pricing. Highly recommended!"</p>
+                    <div class="flex items-center gap-x-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#00ff9f] to-[#ff00ff] flex items-center justify-center font-bold text-black">R</div>
                         <div>
-                            <div class="uppercase text-xs mb-2 text-[#00ff9f]">DIGITAL & PRINT</div>
-                            <div class="text-3xl">Social media kit + 5,000 flyer print run for retail client</div>
+                            <div class="font-semibold text-sm">Ruwan Perera</div>
+                            <div class="text-slate-400 text-xs">CEO, Fashion Brand</div>
                         </div>
                     </div>
                 </div>
@@ -355,44 +426,59 @@
         </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="max-w-screen-2xl mx-auto px-8 py-28">
-        <div class="grid md:grid-cols-12 gap-16 items-center">
-            <div class="md:col-span-6">
-                <h2 class="heading-font text-6xl tracking-[-3px]">We don't just print.<br>We bring your vision to life.</h2>
-                <p class="mt-8 text-xl text-slate-400">Founded in Colombo, Sri Lanka, Suhada Graphics has been the trusted partner for businesses and creatives seeking top-tier design and printing. Every project is treated with passion, precision, and speed.</p>
+    <!-- PARTNERS SECTION -->
+    <section id="partners" class="max-w-screen-2xl mx-auto px-8 py-28">
+        <div class="text-center mb-16">
+            <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">Our Ecosystem</div>
+            <h2 class="heading-font text-5xl tracking-[-2px] mb-4">Partners & Suppliers</h2>
+            <p class="text-slate-400 max-w-lg mx-auto">We work with the best in the industry to bring you premium quality materials and cutting-edge printing technology.</p>
+        </div>
 
-                <div class="mt-16 flex items-center gap-x-12">
-                    <div class="text-center">
-                        <div class="text-6xl font-semibold text-[#00ff9f]">500+</div>
-                        <p class="text-xs mt-2">CLIENTS SERVED</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-6xl font-semibold">10+</div>
-                        <p class="text-xs mt-2">YEARS OF EXPERIENCE</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-6xl font-semibold text-[#ff00ff]">48hr</div>
-                        <p class="text-xs mt-2">AVG TURNAROUND</p>
-                    </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="tilt-card reveal glass rounded-3xl p-8 border border-white/10 hover:border-[#00ff9f] text-center">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00ff9f]/20 to-transparent flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-industry text-3xl text-[#00ff9f]"></i>
                 </div>
+                <h4 class="font-semibold text-xl mb-3">Ink & Paper Suppliers</h4>
+                <p class="text-slate-400 text-sm">We source only the finest inks and paper stocks from certified international suppliers, ensuring colour accuracy and durability in every print.</p>
+                <div class="mt-6 text-xs text-[#00ff9f] tracking-widest">ISO CERTIFIED MATERIALS</div>
             </div>
-
-            <div class="md:col-span-6 glass rounded-3xl p-10">
-                <div class="grid grid-cols-2 gap-8 text-center">
-                    <div class="border-r border-white/10">
-                        <i class="fa-solid fa-print text-6xl mb-4 text-[#00ff9f]"></i>
-                        <h4 class="text-2xl">State-of-the-Art Printing</h4>
-                        <p class="text-slate-400">Digital, offset & large-format printing under one roof</p>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-pen-nib text-6xl mb-4 text-[#ff00ff]"></i>
-                        <h4 class="text-2xl">Creative Design Studio</h4>
-                        <p class="text-slate-400">Expert designers who understand your brand</p>
-                    </div>
+            <div class="tilt-card reveal glass rounded-3xl p-8 border border-white/10 hover:border-[#ff00ff] text-center">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#ff00ff]/20 to-transparent flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-gears text-3xl text-[#ff00ff]"></i>
                 </div>
-                <div class="mt-8 flex justify-center">
-                    <img src="/logo.jpg" alt="Suhada Graphics" class="w-28 h-28 rounded-full object-cover border-4 border-[#00ff9f]/30 shadow-lg shadow-[#00ff9f]/20">
+                <h4 class="font-semibold text-xl mb-3">Printing Equipment Partners</h4>
+                <p class="text-slate-400 text-sm">Our presses are maintained and supplied by leading global printing equipment manufacturers, guaranteeing world-class performance and consistency.</p>
+                <div class="mt-6 text-xs text-[#ff00ff] tracking-widest">WORLD-CLASS MACHINERY</div>
+            </div>
+            <div class="tilt-card reveal glass rounded-3xl p-8 border border-white/10 hover:border-[#00ff9f] text-center">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00ff9f]/20 to-transparent flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-handshake text-3xl text-[#00ff9f]"></i>
+                </div>
+                <h4 class="font-semibold text-xl mb-3">Delivery & Logistics</h4>
+                <p class="text-slate-400 text-sm">Partnered with reliable courier and logistics providers across Sri Lanka to ensure your orders are delivered on time, every time, island-wide.</p>
+                <div class="mt-6 text-xs text-[#00ff9f] tracking-widest">ISLAND-WIDE DELIVERY</div>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="mt-16 glass rounded-3xl p-10 border border-white/10">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-5xl font-bold text-[#00ff9f] heading-font">500+</div>
+                    <p class="text-slate-400 text-sm mt-2">Clients Served</p>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold heading-font">10+</div>
+                    <p class="text-slate-400 text-sm mt-2">Years Experience</p>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-[#ff00ff] heading-font">24+</div>
+                    <p class="text-slate-400 text-sm mt-2">Service Types</p>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-[#00ff9f] heading-font">100%</div>
+                    <p class="text-slate-400 text-sm mt-2">Satisfaction Rate</p>
                 </div>
             </div>
         </div>
@@ -402,16 +488,30 @@
     <section id="contact" class="max-w-screen-2xl mx-auto px-8 py-28 bg-gradient-to-b from-transparent via-[#0a0a2e] to-black">
         <div class="grid md:grid-cols-12 gap-12">
             <div class="md:col-span-5">
-                <h2 class="heading-font text-6xl">Your brand. Our craft.</h2>
-                <p class="mt-6 text-slate-400">Tell us about your project and we'll get back to you with a free quote within hours.</p>
+                <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">Get In Touch</div>
+                <h2 class="heading-font text-5xl tracking-[-2px]">Your brand.<br>Our craft.</h2>
+                <p class="mt-6 text-slate-400 text-lg">Tell us about your project and we'll get back to you with a free quote within hours.</p>
 
-                <div class="mt-12 text-[#00ff9f]">
-                    <div class="flex gap-x-3 mb-4"><i class="fa-solid fa-envelope"></i> info@suhadagraphics.lk</div>
-                    <div class="flex gap-x-3 mb-4"><i class="fa-solid fa-phone"></i> +94 77 XXX XXXX (Colombo)</div>
-                    <div class="flex gap-x-3"><i class="fa-solid fa-location-dot"></i> Colombo, Sri Lanka</div>
+                <div class="mt-12 space-y-4">
+                    <div class="flex gap-x-4 items-center text-[#00ff9f]">
+                        <i class="fa-solid fa-envelope w-5"></i>
+                        <span>info@suhadagraphics.lk</span>
+                    </div>
+                    <div class="flex gap-x-4 items-center text-[#00ff9f]">
+                        <i class="fa-solid fa-phone w-5"></i>
+                        <span>+94 77 XXX XXXX</span>
+                    </div>
+                    <div class="flex gap-x-4 items-center text-[#00ff9f]">
+                        <i class="fa-solid fa-location-dot w-5"></i>
+                        <span>Colombo, Sri Lanka</span>
+                    </div>
+                    <div class="flex gap-x-4 items-center text-[#00ff9f]">
+                        <i class="fa-brands fa-whatsapp w-5"></i>
+                        <span>WhatsApp Available</span>
+                    </div>
                 </div>
 
-                <div class="mt-10 flex gap-x-5">
+                <div class="mt-10 flex gap-x-4">
                     <a href="#" class="w-12 h-12 rounded-full glass border border-white/20 flex items-center justify-center text-xl hover:border-[#00ff9f] hover:text-[#00ff9f]">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
@@ -420,6 +520,9 @@
                     </a>
                     <a href="#" class="w-12 h-12 rounded-full glass border border-white/20 flex items-center justify-center text-xl hover:border-[#00ff9f] hover:text-[#00ff9f]">
                         <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full glass border border-white/20 flex items-center justify-center text-xl hover:border-[#ff00ff] hover:text-[#ff00ff]">
+                        <i class="fa-brands fa-youtube"></i>
                     </a>
                 </div>
             </div>
@@ -430,11 +533,21 @@
                         <input id="name" type="text" placeholder="YOUR NAME" required class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
                         <input id="company" type="text" placeholder="BUSINESS / COMPANY" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
                     </div>
-                    <textarea id="message" placeholder="DESCRIBE YOUR PROJECT (e.g. 500 business cards, logo design, banner...)" rows="6" required class="mt-10 w-full bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none resize-none"></textarea>
-
-                    <button type="submit" class="magnetic mt-12 w-full py-8 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black text-2xl font-semibold rounded-3xl flex justify-center items-center gap-x-4">
-                        SEND MY REQUEST
-                        <i class="fa-solid fa-paper-plane"></i>
+                    <div class="grid grid-cols-2 gap-8 mt-8">
+                        <input id="phone" type="text" placeholder="PHONE NUMBER" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
+                        <select id="service" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none text-slate-400">
+                            <option value="" class="bg-[#05050f]">SERVICE NEEDED</option>
+                            <option value="graphic-design" class="bg-[#05050f]">Graphic Design</option>
+                            <option value="offset-printing" class="bg-[#05050f]">Offset Printing</option>
+                            <option value="digital-printing" class="bg-[#05050f]">Digital Printing</option>
+                            <option value="screen-printing" class="bg-[#05050f]">Screen Printing</option>
+                            <option value="signage" class="bg-[#05050f]">Signage & Name Boards</option>
+                            <option value="other" class="bg-[#05050f]">Other</option>
+                        </select>
+                    </div>
+                    <textarea id="message" placeholder="DESCRIBE YOUR PROJECT (e.g. 500 business cards, logo design, event banner...)" rows="5" required class="mt-10 w-full bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none resize-none"></textarea>
+                    <button type="submit" class="magnetic mt-10 w-full py-7 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black text-xl font-semibold rounded-3xl flex justify-center items-center gap-x-4">
+                        SEND MY REQUEST <i class="fa-solid fa-paper-plane"></i>
                     </button>
                 </form>
             </div>
@@ -453,246 +566,94 @@
                     </div>
                 </div>
                 <p class="text-slate-400 max-w-xs">Design that doesn't follow trends — it sets them. Printing that speaks before you do.</p>
-                <p class="text-xs mt-12 text-slate-500">© 2026 SUHADA GRAPHICS • COLOMBO, SRI LANKA</p>
+                <p class="text-xs mt-8 text-slate-500">© 2026 SUHADA GRAPHICS • COLOMBO, SRI LANKA</p>
             </div>
             <div class="md:col-span-2 space-y-3">
-                <div class="uppercase text-xs mb-4">Services</div>
+                <div class="uppercase text-xs mb-4 text-slate-500">Services</div>
                 <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Graphic Design</div>
-                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Printing</div>
-                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Packaging & Signage</div>
+                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Offset Printing</div>
+                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Digital Printing</div>
+                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Screen Printing</div>
+                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Name Boards</div>
             </div>
             <div class="md:col-span-2 space-y-3">
-                <div class="uppercase text-xs mb-4">Company</div>
-                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">About Us</div>
-                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Portfolio</div>
-                <div class="text-sm cursor-pointer hover:text-[#00ff9f]">Contact</div>
+                <div class="uppercase text-xs mb-4 text-slate-500">Company</div>
+                <a onclick="navigateTo('about')" class="block text-sm cursor-pointer hover:text-[#00ff9f]">About Us</a>
+                <a onclick="navigateTo('clients')" class="block text-sm cursor-pointer hover:text-[#00ff9f]">Our Clients</a>
+                <a onclick="navigateTo('partners')" class="block text-sm cursor-pointer hover:text-[#00ff9f]">Partners</a>
+                <a onclick="navigateTo('contact')" class="block text-sm cursor-pointer hover:text-[#00ff9f]">Contact Us</a>
             </div>
             <div class="md:col-span-2 space-y-3">
-                <div class="uppercase text-xs mb-4">Connect</div>
+                <div class="uppercase text-xs mb-4 text-slate-500">Connect</div>
                 <div class="text-sm cursor-pointer hover:text-[#ff00ff]">Facebook</div>
                 <div class="text-sm cursor-pointer hover:text-[#ff00ff]">Instagram</div>
                 <div class="text-sm cursor-pointer hover:text-[#00ff9f]">WhatsApp</div>
+                <div class="text-sm cursor-pointer hover:text-[#ff00ff]">YouTube</div>
             </div>
-            <div class="md:col-span-2 text-[#00ff9f] flex flex-col justify-end">
+            <div class="md:col-span-2 text-[#00ff9f] flex flex-col justify-end text-sm">
                 MADE IN COLOMBO<br>WITH CREATIVE PASSION
             </div>
         </div>
     </footer>
 
-    <!-- PORTFOLIO MODAL -->
-    <div onclick="if(event.target.id==='demo-modal')hideDemo()" id="demo-modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-2xl z-[9999] items-center justify-center">
-        <div onclick="event.stopImmediatePropagation()" class="w-full max-w-5xl bg-[#05050f] rounded-3xl p-8">
-            <div class="flex justify-between mb-8">
-                <div class="flex items-center gap-x-4 text-4xl heading-font">
-                    <img src="/logo.jpg" alt="SG" class="w-12 h-12 rounded-full object-cover"> PORTFOLIO
-                </div>
-                <button onclick="hideDemo()" class="text-5xl text-slate-400">×</button>
-            </div>
-            <div class="text-center py-8">
-                <h2 class="text-5xl font-semibold mb-4">What We Create</h2>
-                <p class="text-slate-400">Click a category to explore our work</p>
-
-                <div class="grid grid-cols-3 gap-6 mt-12">
-                    <div onclick="fakeView()" class="cursor-pointer tilt-card text-center glass rounded-3xl p-8 hover:border-[#00ff9f] border border-transparent">
-                        <div class="text-6xl mb-6">🎨</div>
-                        <div class="font-semibold text-2xl">Logo & Branding</div>
-                        <div class="text-xs text-slate-400 mt-2">Identities that last</div>
-                    </div>
-                    <div onclick="fakeView()" class="cursor-pointer tilt-card text-center glass rounded-3xl p-8 hover:border-[#ff00ff] border border-transparent">
-                        <div class="text-6xl mb-6">🖨️</div>
-                        <div class="font-semibold text-2xl">Print Materials</div>
-                        <div class="text-xs text-slate-400 mt-2">Cards, flyers, banners</div>
-                    </div>
-                    <div onclick="fakeView()" class="cursor-pointer tilt-card text-center glass rounded-3xl p-8 hover:border-[#00ff9f] border border-transparent">
-                        <div class="text-6xl mb-6">📦</div>
-                        <div class="font-semibold text-2xl">Packaging & Signage</div>
-                        <div class="text-xs text-slate-400 mt-2">Stand out on shelf</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        function initTailwind() {
-            return {
-                config: (userConfig = {}) => ({
-                    content: [],
-                    theme: { extend: {} },
-                    plugins: [],
-                    ...userConfig
-                })
-            };
-        }
-
-        // Canvas particle system
         function createHeroCanvas() {
             const canvas = document.getElementById('hero-canvas');
             const ctx = canvas.getContext('2d');
-
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize); resize();
             let particles = [];
-
             class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 3 + 0.5;
-                    this.speedX = Math.random() * 0.8 - 0.4;
-                    this.speedY = Math.random() * 0.8 - 0.4;
-                    this.hue = Math.random() > 0.5 ? '#00ff9f' : '#ff00ff';
-                }
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-                }
-                draw() {
-                    ctx.fillStyle = this.hue;
-                    ctx.globalAlpha = 0.7;
-                    ctx.fillRect(this.x, this.y, this.size, this.size);
-                }
+                constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 3 + 0.5; this.speedX = Math.random() * 0.8 - 0.4; this.speedY = Math.random() * 0.8 - 0.4; this.hue = Math.random() > 0.5 ? '#00ff9f' : '#ff00ff'; }
+                update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > canvas.width) this.speedX *= -1; if (this.y < 0 || this.y > canvas.height) this.speedY *= -1; }
+                draw() { ctx.fillStyle = this.hue; ctx.globalAlpha = 0.7; ctx.fillRect(this.x, this.y, this.size, this.size); }
             }
-
-            function initParticles() {
-                particles = [];
-                for (let i = 0; i < 280; i++) {
-                    particles.push(new Particle());
-                }
-            }
-
+            function initParticles() { particles = []; for (let i = 0; i < 280; i++) { particles.push(new Particle()); } }
             function animate() {
-                ctx.fillStyle = 'rgba(5, 5, 15, 0.12)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+                ctx.fillStyle = 'rgba(5, 5, 15, 0.12)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
                 particles.forEach((p, i) => {
-                    p.update();
-                    p.draw();
+                    p.update(); p.draw();
                     for (let j = i + 1; j < particles.length; j++) {
-                        const p2 = particles[j];
-                        const dx = p.x - p2.x;
-                        const dy = p.y - p2.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < 110) {
-                            ctx.strokeStyle = p.hue;
-                            ctx.globalAlpha = (110 - distance) / 110 * 0.3;
-                            ctx.lineWidth = 0.6;
-                            ctx.beginPath();
-                            ctx.moveTo(p.x, p.y);
-                            ctx.lineTo(p2.x, p2.y);
-                            ctx.stroke();
-                        }
+                        const p2 = particles[j]; const dx = p.x - p2.x; const dy = p.y - p2.y; const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 110) { ctx.strokeStyle = p.hue; ctx.globalAlpha = (110 - distance) / 110 * 0.3; ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke(); }
                     }
                 });
                 requestAnimationFrame(animate);
             }
-
-            initParticles();
-            animate();
-
+            initParticles(); animate();
             let mouse = { x: 0, y: 0 };
-            window.addEventListener('mousemove', (e) => {
-                mouse.x = e.clientX;
-                mouse.y = e.clientY;
-                particles.forEach(p => {
-                    const dx = mouse.x - p.x;
-                    const dy = mouse.y - p.y;
-                    p.speedX += dx * 0.0008;
-                    p.speedY += dy * 0.0008;
-                });
-            });
+            window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; particles.forEach(p => { const dx = mouse.x - p.x; const dy = mouse.y - p.y; p.speedX += dx * 0.0008; p.speedY += dy * 0.0008; }); });
         }
 
-        // Simple Parallax Engine
         function initParallax() {
             const layers = document.querySelectorAll('.parallax-layer');
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                layers.forEach(layer => {
-                    const speed = layer.getAttribute('data-speed') || 0.3;
-                    const yPos = scrollY * speed;
-                    layer.style.transform = `translateY(${yPos}px)`;
-                });
-            });
+            window.addEventListener('scroll', () => { const scrollY = window.scrollY; layers.forEach(layer => { const speed = layer.getAttribute('data-speed') || 0.3; layer.style.transform = `translateY(${scrollY * speed}px)`; }); });
         }
 
-        // Scroll reveal
         function initReveal() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            document.querySelectorAll('.tilt-card, section > div').forEach(el => {
-                el.classList.add('reveal');
-                observer.observe(el);
-            });
+            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('revealed'); }); }, { threshold: 0.12 });
+            document.querySelectorAll('.tilt-card, .reveal').forEach(el => { el.classList.add('reveal'); observer.observe(el); });
         }
 
-        function toggleMobile() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('hidden');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-xmark');
-        }
+        function toggleMobile() { const menu = document.getElementById('mobile-menu'); const icon = document.getElementById('menu-icon'); menu.classList.toggle('hidden'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-xmark'); }
 
-        function navigateTo(section) {
-            document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function launchDemo() {
-            document.getElementById('demo-modal').style.display = 'flex';
-        }
-
-        function hideDemo() {
-            document.getElementById('demo-modal').style.display = 'none';
-        }
-
-        function fakeView() {
-            hideDemo();
-            const toast = document.createElement('div');
-            toast.style.cssText = 'position:fixed; bottom:30px; right:30px; background:#00ff9f; color:#05050f; padding:18px 28px; border-radius:9999px; font-weight:600; box-shadow:0 0 30px #00ff9f; z-index:99999;';
-            toast.innerHTML = '🎨 FULL PORTFOLIO COMING SOON — Contact us for samples!';
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3200);
-        }
+        function navigateTo(section) { document.getElementById(section).scrollIntoView({ behavior: 'smooth' }); }
 
         function handleContact(e) {
             e.preventDefault();
             const form = document.getElementById('contact-form');
             form.style.opacity = 0.4;
-
             setTimeout(() => {
-                form.reset();
-                form.style.opacity = 1;
-
+                form.reset(); form.style.opacity = 1;
                 const success = document.createElement('div');
                 success.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#05050f; border:3px solid #00ff9f; padding:40px 60px; border-radius:30px; text-align:center; z-index:100000; box-shadow:0 0 80px #00ff9f;';
-                success.innerHTML = `
-                    <h3 class="text-4xl font-semibold mb-4">REQUEST RECEIVED! 🎨</h3>
-                    <p class="text-slate-300">Thank you for reaching out to Suhada Graphics.<br>We'll send you a free quote within a few hours.</p>
-                    <button onclick="this.parentElement.remove()" class="mt-8 px-10 py-4 bg-[#00ff9f] text-black rounded-3xl font-semibold">BACK TO SITE</button>
-                `;
+                success.innerHTML = `<h3 style="font-size:2rem;font-weight:600;margin-bottom:1rem;">Request Received! 🎨</h3><p style="color:#94a3b8;">Thank you for reaching out to Suhada Graphics.<br>We'll send you a free quote within a few hours.</p><button onclick="this.parentElement.remove()" style="margin-top:2rem;padding:14px 40px;background:#00ff9f;color:#05050f;border-radius:9999px;font-weight:600;border:none;cursor:pointer;">Back to Site</button>`;
                 document.body.appendChild(success);
             }, 900);
         }
 
         window.onload = () => {
-            initTailwind();
-            createHeroCanvas();
-            initParallax();
-            initReveal();
+            createHeroCanvas(); initParallax(); initReveal();
             console.log('%c🎨 Suhada Graphics — Total Printing & Graphic Design. Colombo, Sri Lanka.', 'color:#00ff9f; font-size:14px; font-family:Space Grotesk');
         };
     </script>
