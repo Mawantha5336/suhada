@@ -126,7 +126,7 @@
                     <i id="theme-icon" class="fa-solid fa-sun"></i>
                 </button>
 
-                <button onclick="navigateTo('contact')" class="magnetic px-7 py-3 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black font-semibold rounded-3xl flex items-center gap-x-2 shadow-xl shadow-[#00ff9f]/40 text-sm">
+                <button onclick="navigateTo('contact')" class="magnetic hidden sm:flex px-7 py-3 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black font-semibold rounded-3xl items-center gap-x-2 shadow-xl shadow-[#00ff9f]/40 text-sm">
                     GET A QUOTE <i class="fa-solid fa-arrow-right"></i>
                 </button>
                 <button onclick="toggleMobile()" class="md:hidden text-3xl">
@@ -135,13 +135,17 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-8 py-6 glass border-t">
-            <div class="flex flex-col gap-y-5 text-lg">
-                <a onclick="navigateTo('home');toggleMobile()" class="py-1">Home</a>
-                <a onclick="navigateTo('about');toggleMobile()" class="py-1">About</a>
-                <a onclick="navigateTo('solutions');toggleMobile()" class="py-1">Services</a>
-                <a onclick="navigateTo('videos');toggleMobile()" class="py-1">Videos</a>
-                <a onclick="navigateTo('clients');toggleMobile()" class="py-1">Clients</a>
-                <a onclick="navigateTo('contact');toggleMobile()" class="py-1">Contact</a>
+            <div class="flex flex-col gap-y-4 text-base">
+                <a onclick="navigateTo('home');toggleMobile()" class="py-2 border-b border-white/10">Home</a>
+                <a onclick="navigateTo('about');toggleMobile()" class="py-2 border-b border-white/10">About</a>
+                <a onclick="navigateTo('solutions');toggleMobile()" class="py-2 border-b border-white/10">Services</a>
+                <a href="/services.html" class="py-2 border-b border-white/10 text-[#00ff9f]">Gallery</a>
+                <a onclick="navigateTo('videos');toggleMobile()" class="py-2 border-b border-white/10">Videos</a>
+                <a onclick="navigateTo('clients');toggleMobile()" class="py-2 border-b border-white/10">Clients</a>
+                <a onclick="navigateTo('contact');toggleMobile()" class="py-2">Contact</a>
+                <button onclick="navigateTo('contact');toggleMobile()" class="mt-2 w-full py-3 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black font-bold rounded-2xl text-sm">
+                    GET A QUOTE
+                </button>
             </div>
         </div>
     </nav>
@@ -150,24 +154,24 @@
     <section id="home" class="hero-bg min-h-screen relative flex items-center pt-20 overflow-hidden">
         <canvas id="hero-canvas" class="absolute inset-0"></canvas>
 
-        <div class="max-w-screen-2xl mx-auto px-8 relative z-10 grid md:grid-cols-12 gap-12 items-center">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 relative z-10 grid md:grid-cols-12 gap-8 md:gap-12 items-center">
             <div class="md:col-span-7 parallax-layer" data-speed="0.2">
                 <div class="inline-flex px-6 py-2 bg-white/10 backdrop-blur-md text-xs font-semibold rounded-3xl border border-[#00ff9f]/30 items-center gap-x-3 mb-8">
                     <div class="w-2 h-2 bg-[#00ff9f] rounded-full animate-ping"></div>
                     NOW ACCEPTING ORDERS — COLOMBO, SRI LANKA
                 </div>
-                <h1 class="heading-font text-6xl md:text-[72px] leading-none tracking-[-4px] neon-glow mb-6">
+                <h1 class="heading-font text-4xl sm:text-5xl md:text-[72px] leading-tight md:leading-none tracking-tight md:tracking-[-4px] neon-glow mb-6">
                     DESIGN THAT<br>MAKES YOUR<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00ff9f] via-[#ff00ff] to-[#00ff9f]">BRAND SHINE</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-slate-400 max-w-xl mb-12">
+                <p class="text-base sm:text-lg md:text-2xl text-slate-400 max-w-xl mb-8 md:mb-12">
                     Sri Lanka's leading total printing & graphic design studio. Quality, Speed & Peace of Mind — guaranteed.
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <button onclick="navigateTo('contact')" class="magnetic px-10 py-6 text-xl font-semibold rounded-3xl bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black flex items-center gap-x-4 hover:shadow-2xl hover:shadow-[#ff00ff]/40">
-                        START YOUR PROJECT <span class="text-2xl">🎨</span>
+                <div class="flex flex-wrap gap-3 md:gap-4">
+                    <button onclick="navigateTo('contact')" class="magnetic px-6 py-4 md:px-10 md:py-6 text-base md:text-xl font-semibold rounded-3xl bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black flex items-center gap-x-3 hover:shadow-2xl hover:shadow-[#ff00ff]/40">
+                        START YOUR PROJECT <span class="text-xl md:text-2xl">🎨</span>
                     </button>
-                    <button onclick="navigateTo('solutions')" class="px-8 py-6 border-2 border-white/30 hover:border-white rounded-3xl text-xl flex items-center gap-x-4">
-                        <i class="fa-solid fa-list text-2xl"></i> OUR SERVICES
+                    <button onclick="navigateTo('solutions')" class="px-5 py-4 md:px-8 md:py-6 border-2 border-white/30 hover:border-white rounded-3xl text-base md:text-xl flex items-center gap-x-3">
+                        <i class="fa-solid fa-list text-xl md:text-2xl"></i> OUR SERVICES
                     </button>
                 </div>
                 <div class="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-slate-400">
@@ -178,7 +182,7 @@
                     <span>Graphic Design</span>
                 </div>
             </div>
-            <div class="md:col-span-5 relative parallax-layer" data-speed="0.6">
+            <div class="hidden md:block md:col-span-5 relative parallax-layer" data-speed="0.6">
                 <div class="relative mx-auto max-w-md">
                     <div class="absolute -top-12 -left-12 w-64 h-64 bg-gradient-to-br from-[#00ff9f]/30 to-[#ff00ff]/30 rounded-full blur-3xl animate-pulse"></div>
                     <div class="tilt-card bg-gradient-to-br from-[#111133] to-[#1a1a44] border border-[#00ff9f]/20 rounded-3xl p-8 shadow-2xl">
@@ -208,8 +212,8 @@
     </section>
 
     <!-- TRUST BAR -->
-    <div class="trust-bar py-8 border-b border-white/10 bg-black/60">
-        <div class="max-w-screen-2xl mx-auto px-8 flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-slate-400 text-sm font-medium">
+    <div class="trust-bar py-6 md:py-8 border-b border-white/10 bg-black/60">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 flex flex-wrap justify-center items-center gap-x-8 md:gap-x-12 gap-y-3 text-slate-400 text-xs md:text-sm font-medium">
             <div>10+ YEARS OF EXCELLENCE</div>
             <div>500+ HAPPY CLIENTS</div>
             <div>FAST 24–48HR TURNAROUND</div>
@@ -219,17 +223,17 @@
     </div>
 
     <!-- ABOUT -->
-    <section id="about" class="max-w-screen-2xl mx-auto px-8 py-28 relative overflow-hidden">
+    <section id="about" class="max-w-screen-2xl mx-auto px-4 sm:px-8 py-16 md:py-28 relative overflow-hidden">
 
         <!-- Decorative Bird Art -->
         <img src="/bird2.png" alt="" aria-hidden="true"
              class="absolute left-0 top-1/2 -translate-y-1/2 w-[480px] opacity-60 pointer-events-none select-none"
              style="filter: drop-shadow(0 0 60px rgba(180,0,255,0.6));">
 
-        <div class="grid md:grid-cols-12 gap-16 items-start relative z-10">
+        <div class="grid md:grid-cols-12 gap-8 md:gap-16 items-start relative z-10">
             <div class="md:col-span-6 reveal">
                 <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">About Us</div>
-                <h2 class="heading-font text-5xl tracking-[-2px] mb-8">Sri Lanka's leading printing partner</h2>
+                <h2 class="heading-font text-3xl sm:text-4xl md:text-5xl tracking-tight md:tracking-[-2px] mb-6 md:mb-8">Sri Lanka's leading printing partner</h2>
                 <p class="text-slate-300 text-lg leading-relaxed mb-6">
                     We, <strong class="text-white">Suhada Graphics</strong>, as the most leading competitors for the innovative productions in all your needs of printing, have won a wider recognition over the years, for maintaining the overall quality in business.
                 </p>
@@ -283,17 +287,17 @@
     </section>
 
     <!-- SERVICES -->
-    <section id="solutions" class="py-28 bg-black/40 relative overflow-hidden">
+    <section id="solutions" class="py-16 md:py-28 bg-black/40 relative overflow-hidden">
 
         <!-- Decorative Bird Art -->
         <img src="/bird1.png" alt="" aria-hidden="true"
              class="absolute -right-16 top-1/2 -translate-y-1/2 w-[380px] opacity-20 pointer-events-none select-none"
              style="filter: drop-shadow(0 0 50px rgba(255,100,0,0.5));">
 
-        <div class="max-w-screen-2xl mx-auto px-8 relative z-10">
-            <div class="text-center mb-16">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 relative z-10">
+            <div class="text-center mb-10 md:mb-16">
                 <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">What We Offer</div>
-                <h2 class="heading-font text-5xl tracking-[-2px] mb-4">Our Services</h2>
+                <h2 class="heading-font text-3xl sm:text-4xl md:text-5xl tracking-tight md:tracking-[-2px] mb-4">Our Services</h2>
                 <p class="text-slate-400 max-w-xl mx-auto">A complete range of printing and design solutions under one roof — from concept to delivery.</p>
             </div>
 
@@ -389,10 +393,10 @@
     </section>
 
     <!-- VIDEOS SECTION -->
-    <section id="videos" class="max-w-screen-2xl mx-auto px-8 py-28">
-        <div class="text-center mb-16">
+    <section id="videos" class="max-w-screen-2xl mx-auto px-4 sm:px-8 py-16 md:py-28">
+        <div class="text-center mb-10 md:mb-16">
             <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">See It In Action</div>
-            <h2 class="heading-font text-5xl tracking-[-2px] mb-4">Our Services In Action</h2>
+            <h2 class="heading-font text-3xl sm:text-4xl md:text-5xl tracking-tight md:tracking-[-2px] mb-4">Our Services In Action</h2>
             <p class="text-slate-400 max-w-xl mx-auto">Watch how our printing and design processes work — from raw materials to your finished product.</p>
         </div>
 
@@ -428,17 +432,17 @@
     </section>
 
     <!-- CLIENTS SECTION -->
-    <section id="clients" class="py-28 bg-black/40 relative overflow-hidden">
+    <section id="clients" class="py-16 md:py-28 bg-black/40 relative overflow-hidden">
 
         <!-- Decorative Bird Art -->
         <img src="/bird2.png" alt="" aria-hidden="true"
              class="absolute right-0 bottom-0 w-[340px] opacity-15 pointer-events-none select-none"
              style="filter: drop-shadow(0 0 40px rgba(200,0,255,0.4)); transform: scaleX(-1);">
 
-        <div class="max-w-screen-2xl mx-auto px-8 relative z-10">
-            <div class="text-center mb-16">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 relative z-10">
+            <div class="text-center mb-10 md:mb-16">
                 <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">Trusted By</div>
-                <h2 class="heading-font text-5xl tracking-[-2px] mb-4">Our Valued Clients</h2>
+                <h2 class="heading-font text-3xl sm:text-4xl md:text-5xl tracking-tight md:tracking-[-2px] mb-4">Our Valued Clients</h2>
                 <p class="text-slate-400 max-w-lg mx-auto">We are proud to have served hundreds of businesses, institutions, and individuals across Sri Lanka and beyond.</p>
             </div>
 
@@ -554,22 +558,22 @@
         </div>
 
         <!-- Stats Bar -->
-        <div class="mt-16 glass rounded-3xl p-10 border border-white/10">
-            <div class="grid md:grid-cols-4 gap-8 text-center">
+        <div class="mt-10 md:mt-16 glass rounded-3xl p-6 md:p-10 border border-white/10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
                 <div>
-                    <div class="text-5xl font-bold text-[#00ff9f] heading-font">500+</div>
+                    <div class="text-3xl md:text-5xl font-bold text-[#00ff9f] heading-font">500+</div>
                     <p class="text-slate-400 text-sm mt-2">Clients Served</p>
                 </div>
                 <div>
-                    <div class="text-5xl font-bold heading-font">10+</div>
+                    <div class="text-3xl md:text-5xl font-bold heading-font">10+</div>
                     <p class="text-slate-400 text-sm mt-2">Years Experience</p>
                 </div>
                 <div>
-                    <div class="text-5xl font-bold text-[#ff00ff] heading-font">24+</div>
+                    <div class="text-3xl md:text-5xl font-bold text-[#ff00ff] heading-font">24+</div>
                     <p class="text-slate-400 text-sm mt-2">Service Types</p>
                 </div>
                 <div>
-                    <div class="text-5xl font-bold text-[#00ff9f] heading-font">100%</div>
+                    <div class="text-3xl md:text-5xl font-bold text-[#00ff9f] heading-font">100%</div>
                     <p class="text-slate-400 text-sm mt-2">Satisfaction Rate</p>
                 </div>
             </div>
@@ -577,11 +581,11 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="max-w-screen-2xl mx-auto px-8 py-28 bg-gradient-to-b from-transparent via-[#0a0a2e] to-black">
-        <div class="grid md:grid-cols-12 gap-12">
+    <section id="contact" class="max-w-screen-2xl mx-auto px-4 sm:px-8 py-16 md:py-28 bg-gradient-to-b from-transparent via-[#0a0a2e] to-black">
+        <div class="grid md:grid-cols-12 gap-8 md:gap-12">
             <div class="md:col-span-5">
                 <div class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-4">Get In Touch</div>
-                <h2 class="heading-font text-5xl tracking-[-2px]">Your brand.<br>Our craft.</h2>
+                <h2 class="heading-font text-3xl sm:text-4xl md:text-5xl tracking-tight md:tracking-[-2px]">Your brand.<br>Our craft.</h2>
                 <p class="mt-6 text-slate-400 text-lg">Tell us about your project and we'll get back to you with a free quote within hours.</p>
 
                 <div class="mt-12 space-y-4">
@@ -620,14 +624,14 @@
             </div>
 
             <div class="md:col-span-7">
-                <form id="contact-form" onsubmit="handleContact(event)" class="glass rounded-3xl p-12">
-                    <div class="grid grid-cols-2 gap-8">
-                        <input id="name" name="name" type="text" placeholder="YOUR NAME" required class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
-                        <input id="company" name="company" type="text" placeholder="BUSINESS / COMPANY" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
+                <form id="contact-form" onsubmit="handleContact(event)" class="glass rounded-3xl p-6 sm:p-10 md:p-12">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                        <input id="name" name="name" type="text" placeholder="YOUR NAME" required class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-base md:text-lg outline-none">
+                        <input id="company" name="company" type="text" placeholder="BUSINESS / COMPANY" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-base md:text-lg outline-none">
                     </div>
-                    <div class="grid grid-cols-2 gap-8 mt-8">
-                        <input id="phone" name="phone" type="text" placeholder="PHONE NUMBER" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
-                        <select id="service" name="service" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none text-slate-400">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8">
+                        <input id="phone" name="phone" type="text" placeholder="PHONE NUMBER" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-base md:text-lg outline-none">
+                        <select id="service" name="service" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-base md:text-lg outline-none text-slate-400">
                             <option value="" class="bg-[#05050f]">SERVICE NEEDED</option>
                             <option value="Graphic Design" class="bg-[#05050f]">Graphic Design</option>
                             <option value="Offset Printing" class="bg-[#05050f]">Offset Printing</option>
@@ -637,9 +641,9 @@
                             <option value="Other" class="bg-[#05050f]">Other</option>
                         </select>
                     </div>
-                    <textarea id="message" name="message" placeholder="DESCRIBE YOUR PROJECT (e.g. 500 business cards, logo design, event banner...)" rows="5" required class="mt-10 w-full bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none resize-none"></textarea>
+                    <textarea id="message" name="message" placeholder="DESCRIBE YOUR PROJECT (e.g. 500 business cards, logo design, event banner...)" rows="5" required class="mt-6 md:mt-10 w-full bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-base md:text-lg outline-none resize-none"></textarea>
                     <input type="hidden" name="_subject" value="New Enquiry — Suhada Graphics Website">
-                    <button type="submit" id="submit-btn" class="magnetic mt-10 w-full py-7 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black text-xl font-semibold rounded-3xl flex justify-center items-center gap-x-4">
+                    <button type="submit" id="submit-btn" class="magnetic mt-6 md:mt-10 w-full py-5 md:py-7 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black text-base md:text-xl font-semibold rounded-3xl flex justify-center items-center gap-x-4">
                         SEND MY REQUEST <i class="fa-solid fa-paper-plane"></i>
                     </button>
                 </form>
@@ -648,8 +652,8 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black py-20">
-        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-12">
+    <footer class="bg-black py-12 md:py-20">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 grid md:grid-cols-12 gap-8 md:gap-12">
             <div class="md:col-span-4">
                 <div class="flex items-center gap-x-4 mb-8">
                     <img src="/logo.jpg" alt="Suhada Graphics" class="w-14 h-14 rounded-full object-cover border-2 border-[#00ff9f]/40">
@@ -684,7 +688,7 @@
                 <a href="https://youtube.com/@suhadagraphics145" target="_blank" class="block text-sm cursor-pointer hover:text-[#ff00ff]">YouTube</a>
             </div>
         </div>
-        <div class="max-w-screen-2xl mx-auto px-8 mt-12 pt-6 border-t border-white/10 text-center text-xs text-slate-500">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 mt-8 md:mt-12 pt-6 border-t border-white/10 text-center text-xs text-slate-500">
             Developed by <span class="text-[#00ff9f]">CodeXpro Solutions (pvt) Ltd</span>
         </div>
     </footer>

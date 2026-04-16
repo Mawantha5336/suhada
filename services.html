@@ -79,8 +79,12 @@
         ══════════════════════════════════════ */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .gallery-grid { gap: 2rem; }
         }
 
         .gallery-card {
@@ -350,10 +354,10 @@
         <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full glass border border-[#00ff9f]/20 text-[#00ff9f] text-xs font-semibold tracking-widest uppercase">
             <i class="fa-solid fa-star"></i> Premium Quality Work
         </div>
-        <h2 class="heading-font text-5xl md:text-6xl font-extrabold mb-4 section-header">
+        <h2 class="heading-font text-3xl sm:text-4xl md:text-6xl font-extrabold mb-4 section-header">
             Our Services
         </h2>
-        <p class="text-slate-400 text-lg mt-6 leading-relaxed">
+        <p class="text-slate-400 text-base md:text-lg mt-6 leading-relaxed">
             From personalised mugs to bulk tags, custom leaflets to stunning business cards — explore what we craft for you.
         </p>
 
@@ -394,7 +398,7 @@
 </div>
 
 <!-- ══ GALLERY GRID ══ -->
-<main class="max-w-screen-xl mx-auto px-6 py-16">
+<main class="max-w-screen-xl mx-auto px-4 sm:px-6 py-10 md:py-16">
 
     <div class="gallery-grid" id="gallery-grid">
 
