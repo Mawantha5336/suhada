@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VORTEX • Where code meets cosmic intelligence. Next-gen AI, cloud, and enterprise software.">
+    <title>VORTEX • Cosmic Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap');
+         :root {
+            --primary: #00ff9f;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, transform, box-shadow;
+            transition-duration: 0.3s;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .hero-bg {
+            background: radial-gradient(circle at 30% 20%, #0a0a2e 0%, #000011 70%);
+        }
+        
+        .glass {
+            background: rgba(10, 10, 30, 0.65);
+            backdrop-filter: blur(20px);
+        }
+        
+        .neon-glow {
+            text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary), 0 0 50px #ff00ff;
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #00ff9f, #ff00ff);
+            border-radius: 9999px;
+        }
+        /* Parallax Layers */
+        
+        .parallax-layer {
+            transition: transform 0.1s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        /* Card Tilt */
+        
+        .tilt-card {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .tilt-card:hover {
+            transform: perspective(1200px) rotateX(12deg) rotateY(12deg) scale(1.05);
+            box-shadow: 0 40px 80px -20px rgb(0 255 159 / 0.4);
+        }
+        /* Magnetic Button */
+        
+        .magnetic {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .magnetic::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        
+        .magnetic:hover::before {
+            animation: magneticPulse 1.2s ease-out forwards;
+        }
+        
+        @keyframes magneticPulse {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.6;
+            }
+            100% {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+        /* Scroll Reveal */
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Canvas Background */
+        
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-[#05050f] text-slate-200 overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-x-3">
+                <div class="relative w-10 h-10">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#00ff9f] to-[#ff00ff] rounded-2xl rotate-45 scale-75 blur-xl opacity-30"></div>
+                    <div class="w-10 h-10 rounded-2xl bg-black flex items-center justify-center text-3xl relative z-10 border border-[#00ff9f]/30">🌌</div>
+                </div>
+                <h1 class="heading-font text-4xl tracking-[-3px] neon-glow">VORTEX</h1>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                <a onclick="navigateTo('home')" class="hover:text-[#00ff9f] cursor-pointer">Home</a>
+                <a onclick="navigateTo('solutions')" class="hover:text-[#00ff9f] cursor-pointer">Solutions</a>
+                <a onclick="navigateTo('work')" class="hover:text-[#00ff9f] cursor-pointer">Work</a>
+                <a onclick="navigateTo('about')" class="hover:text-[#00ff9f] cursor-pointer">About</a>
+                <a onclick="navigateTo('contact')" class="hover:text-[#00ff9f] cursor-pointer">Forge Contact</a>
+            </div>
+
+            <div class="flex items-center gap-x-5">
+                <button onclick="launchDemo()" class="magnetic px-8 py-3.5 text-sm font-semibold border border-[#00ff9f]/40 hover:border-[#00ff9f] rounded-3xl flex items-center gap-x-2 text-[#00ff9f]">
+                    <i class="fa-solid fa-rocket"></i>
+                    LIVE DEMO
+                </button>
+
+                <button onclick="navigateTo('contact')" class="magnetic px-8 py-3.5 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black font-semibold rounded-3xl flex items-center gap-x-3 shadow-xl shadow-[#00ff9f]/50">
+                    START FORGING
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <!-- Mobile Menu -->
+                <button onclick="toggleMobile()" class="md:hidden text-3xl">
+                    <i id="menu-icon" class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-8 py-6 glass border-t">
+            <div class="flex flex-col gap-y-6 text-lg">
+                <a onclick="navigateTo('home');toggleMobile()" class="py-2">Home</a>
+                <a onclick="navigateTo('solutions');toggleMobile()" class="py-2">Solutions</a>
+                <a onclick="navigateTo('work');toggleMobile()" class="py-2">Work</a>
+                <a onclick="navigateTo('about');toggleMobile()" class="py-2">About</a>
+                <a onclick="navigateTo('contact');toggleMobile()" class="py-2">Forge Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO with PARALLAX + Canvas Particles -->
+    <section id="home" class="hero-bg min-h-screen relative flex items-center pt-20 overflow-hidden">
+
+        <!-- Canvas Background -->
+        <canvas id="hero-canvas" class="absolute inset-0"></canvas>
+
+        <!-- Parallax Layers -->
+        <div class="max-w-screen-2xl mx-auto px-8 relative z-10 grid md:grid-cols-12 gap-12 items-center">
+
+            <!-- Left Content -->
+            <div class="md:col-span-7 parallax-layer" data-speed="0.2">
+                <div class="inline-flex px-6 py-2 bg-white/10 backdrop-blur-md text-xs font-semibold rounded-3xl border border-[#00ff9f]/30 items-center gap-x-3 mb-8">
+                    <div class="w-2 h-2 bg-[#00ff9f] rounded-full animate-ping"></div>
+                    VORTEX AI STUDIO v3 — NOW IN OPEN BETA
+                </div>
+
+                <h1 class="heading-font text-6xl md:text-[72px] leading-none tracking-[-4px] neon-glow mb-6">
+                    PULL THE<br>FUTURE INTO<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00ff9f] via-[#ff00ff] to-[#00ff9f]">REALITY</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-slate-400 max-w-xl mb-12">
+                    Cosmic intelligence platform. AI agents that orbit your goals. Software that bends to your vision.
+                </p>
+
+                <div class="flex gap-x-4">
+                    <button onclick="launchDemo()" class="magnetic px-10 py-7 text-xl font-semibold rounded-3xl bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black flex items-center gap-x-4 hover:shadow-2xl hover:shadow-[#ff00ff]/40">
+                        ENTER THE VORTEX
+                        <span class="text-3xl">🌌</span>
+                    </button>
+
+                    <button onclick="watchTrailer()" class="px-8 py-7 border-2 border-white/30 hover:border-white rounded-3xl text-xl flex items-center gap-x-4">
+                        <i class="fa-solid fa-play-circle text-3xl"></i>
+                        1:42 TRAILER
+                    </button>
+                </div>
+
+                <div class="mt-16 flex items-center gap-x-8 text-sm">
+                    <div>Backed by</div>
+                    <div class="flex items-center gap-x-6 opacity-70">
+                        <i class="fa-brands fa-aws text-3xl"></i>
+                        <i class="fa-brands fa-microsoft text-3xl"></i>
+                        <i class="fa-brands fa-google text-3xl"></i>
+                        <i class="fa-brands fa-openai text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Parallax Visual -->
+            <div class="md:col-span-5 relative parallax-layer" data-speed="0.6">
+                <div class="relative mx-auto max-w-md">
+                    <!-- Floating Orb -->
+                    <div class="absolute -top-12 -left-12 w-64 h-64 bg-gradient-to-br from-[#00ff9f]/30 to-[#ff00ff]/30 rounded-full blur-3xl animate-pulse"></div>
+
+                    <div class="tilt-card bg-gradient-to-br from-[#111133] to-[#1a1a44] border border-[#00ff9f]/20 rounded-3xl p-8 shadow-2xl relative">
+                        <div class="flex justify-between mb-8">
+                            <div class="text-[#00ff9f] font-medium">LIVE ORBIT</div>
+                            <div class="px-4 py-1 text-xs rounded-full bg-[#ff00ff]/20 text-[#ff00ff]">4 AGENTS ACTIVE</div>
+                        </div>
+
+                        <div class="text-7xl mb-6">🌍</div>
+                        <h4 class="text-3xl font-semibold">Autonomous Global Trade Network</h4>
+                        <p class="text-slate-400 mt-2">Real-time AI decisions • 12 markets • 0.8s latency</p>
+
+                        <div class="mt-12 h-2 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] rounded-full relative overflow-hidden">
+                            <div class="absolute h-full w-3/4 bg-white animate-[pulse_1.5s_infinite]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-12 left-1/2 flex flex-col items-center text-xs tracking-widest z-20">
+            SCROLL TO ENTER VORTEX
+            <i class="fa-solid fa-chevron-down mt-2 animate-bounce text-[#00ff9f]"></i>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="py-8 border-b border-white/10 bg-black/60">
+        <div class="max-w-screen-2xl mx-auto px-8 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-slate-400 text-sm font-medium">
+            <div>FORBES AI 50 • 2026</div>
+            <div>WEBBY AWARD WINNER</div>
+            <div>ISO 42001 CERTIFIED</div>
+            <div>DEPLOYED IN 87 COUNTRIES</div>
+            <div>99.999% ORBIT UPTIME</div>
+        </div>
+    </div>
+
+    <!-- SOLUTIONS -->
+    <section id="solutions" class="max-w-screen-2xl mx-auto px-8 py-28">
+        <div class="flex justify-between mb-16">
+            <h2 class="heading-font text-5xl tracking-[-2px]">Solutions that orbit your ambition</h2>
+            <button onclick="launchDemo()" class="flex items-center text-[#00ff9f] font-semibold gap-x-2 text-lg">
+                EXPLORE ALL ORBITS <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="tilt-card glass rounded-3xl p-8 border border-white/10 hover:border-[#00ff9f]">
+                <div class="text-7xl mb-6">🧬</div>
+                <h3 class="text-3xl font-semibold mb-3">AI Swarm Intelligence</h3>
+                <p class="text-slate-400">Hundreds of autonomous agents that collaborate in real-time to solve complex problems.</p>
+                <div class="mt-12 text-xs text-[#00ff9f]">NOW LIVE • 14,892 agents deployed</div>
+            </div>
+
+            <div class="tilt-card glass rounded-3xl p-8 border border-white/10 hover:border-[#ff00ff]">
+                <div class="text-7xl mb-6">☁️</div>
+                <h3 class="text-3xl font-semibold mb-3">Nexus Quantum Cloud</h3>
+                <p class="text-slate-400">Serverless infrastructure with predictive scaling and zero-trust quantum encryption.</p>
+                <div class="mt-12 text-xs text-[#ff00ff]">MULTI-PLANET READY</div>
+            </div>
+
+            <div class="tilt-card glass rounded-3xl p-8 border border-white/10 hover:border-[#00ff9f]">
+                <div class="text-7xl mb-6">🔮</div>
+                <h3 class="text-3xl font-semibold mb-3">VisionForge OS</h3>
+                <p class="text-slate-400">Your company’s custom operating system. Built in hours. Powered by your data universe.</p>
+                <div class="mt-12 text-xs text-[#00ff9f]">WHITE-GLOVE • 100% CUSTOM</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="py-28 bg-black/40">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="heading-font text-center text-5xl mb-4">Recent orbits completed</h2>
+            <p class="text-center text-slate-400 max-w-md mx-auto">Real impact. Instant deployment. Cosmic scale.</p>
+
+            <div class="grid md:grid-cols-4 gap-6 mt-16">
+                <div class="tilt-card bg-gradient-to-br from-[#1a0033] to-[#001a33] rounded-3xl p-8 border border-transparent hover:border-[#ff00ff]/40">
+                    <div class="h-64 flex items-end">
+                        <div>
+                            <div class="uppercase text-xs mb-2">HDFC BANK • INDIA</div>
+                            <div class="text-3xl">Fraud detection AI swarm — 98.9% accuracy</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tilt-card bg-gradient-to-br from-[#00331a] to-[#001a33] rounded-3xl p-8 border border-transparent hover:border-[#00ff9f]/40">
+                    <div class="h-64 flex items-end">
+                        <div>
+                            <div class="uppercase text-xs mb-2">NASA + ESA</div>
+                            <div class="text-3xl">Mars rover autonomous navigation system</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tilt-card bg-gradient-to-br from-[#331a00] to-[#1a0033] rounded-3xl p-8 border border-transparent hover:border-[#ff00ff]/40">
+                    <div class="h-64 flex items-end">
+                        <div>
+                            <div class="uppercase text-xs mb-2">SINGAPORE SMART NATION</div>
+                            <div class="text-3xl">City-wide digital twin powered by Vortex</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tilt-card bg-gradient-to-br from-[#001a33] to-[#00331a] rounded-3xl p-8 border border-transparent hover:border-[#00ff9f]/40">
+                    <div class="h-64 flex items-end">
+                        <div>
+                            <div class="uppercase text-xs mb-2">COLOMBO TECH HUB</div>
+                            <div class="text-3xl">National AI trade platform — 400% ROI in 30 days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-8 py-28">
+        <div class="grid md:grid-cols-12 gap-16 items-center">
+            <div class="md:col-span-6">
+                <h2 class="heading-font text-6xl tracking-[-3px]">We don’t code.<br>We create gravitational pull toward the impossible.</h2>
+                <p class="mt-8 text-xl text-slate-400">Founded by ex-DeepMind and SpaceX engineers in 2024. VORTEX exists to make every company a cosmic intelligence powerhouse.</p>
+
+                <div class="mt-16 flex items-center gap-x-12">
+                    <div class="text-center">
+                        <div class="text-6xl font-semibold text-[#00ff9f]">∞</div>
+                        <p class="text-xs mt-2">AGENTS IN ORBIT</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-6xl font-semibold">142</div>
+                        <p class="text-xs mt-2">COUNTRIES LIVE</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-6xl font-semibold text-[#ff00ff]">0.3s</div>
+                        <p class="text-xs mt-2">AVERAGE DEPLOYMENT</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 glass rounded-3xl p-10">
+                <div class="grid grid-cols-2 gap-8 text-center">
+                    <div class="border-r border-white/10">
+                        <i class="fa-solid fa-satellite-dish text-6xl mb-4 text-[#00ff9f]"></i>
+                        <h4 class="text-2xl">Orbital AI Labs</h4>
+                        <p class="text-slate-400">Colombo • San Francisco • Tokyo</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-globe text-6xl mb-4 text-[#ff00ff]"></i>
+                        <h4 class="text-2xl">Zero-carbon quantum data centers</h4>
+                        <p class="text-slate-400">Running on solar + fusion pilots</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-screen-2xl mx-auto px-8 py-28 bg-gradient-to-b from-transparent via-[#0a0a2e] to-black">
+        <div class="grid md:grid-cols-12 gap-12">
+            <div class="md:col-span-5">
+                <h2 class="heading-font text-6xl">Your vision. Our gravity.</h2>
+                <p class="mt-6 text-slate-400">Tell us what you want to pull into existence. Our AI swarm will reply within minutes.</p>
+
+                <div class="mt-12 text-[#00ff9f]">
+                    <div class="flex gap-x-3 mb-4"><i class="fa-solid fa-envelope"></i> hello@vortex.ai</div>
+                    <div class="flex gap-x-3 mb-4"><i class="fa-solid fa-phone"></i> +94 77 555 9999 (Colombo HQ)</div>
+                    <div class="flex gap-x-3"><i class="fa-solid fa-location-dot"></i> Colombo • Singapore • San Francisco</div>
+                </div>
+            </div>
+
+            <div class="md:col-span-7">
+                <form id="contact-form" onsubmit="handleContact(event)" class="glass rounded-3xl p-12">
+                    <div class="grid grid-cols-2 gap-8">
+                        <input id="name" type="text" placeholder="YOUR NAME" required class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
+                        <input id="company" type="text" placeholder="COMPANY / STARTUP" class="bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none">
+                    </div>
+                    <textarea id="message" placeholder="WHAT REALITY DO YOU WANT TO FORGE?" rows="6" required class="mt-10 w-full bg-transparent border-b border-white/30 focus:border-[#00ff9f] py-4 text-lg outline-none resize-none"></textarea>
+
+                    <button type="submit" class="magnetic mt-12 w-full py-8 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black text-2xl font-semibold rounded-3xl flex justify-center items-center gap-x-4">
+                        LAUNCH INTO VORTEX
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-20">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-12">
+            <div class="md:col-span-4">
+                <div class="flex items-center gap-x-3 text-4xl mb-8">
+                    🌌 <span class="heading-font neon-glow">VORTEX</span>
+                </div>
+                <p class="text-slate-400 max-w-xs">Software that doesn’t follow trends — it creates gravitational fields.</p>
+                <p class="text-xs mt-12 text-slate-500">© 2026 VORTEX DYNAMICS • COLOMBO, SRI LANKA</p>
+            </div>
+            <div class="md:col-span-2 space-y-3">
+                <div class="uppercase text-xs mb-4">Product</div>
+                <div class="text-sm cursor-pointer">AI Swarm</div>
+                <div class="text-sm cursor-pointer">Quantum Cloud</div>
+                <div class="text-sm cursor-pointer">VisionForge OS</div>
+            </div>
+            <div class="md:col-span-2 space-y-3">
+                <div class="uppercase text-xs mb-4">Company</div>
+                <div class="text-sm cursor-pointer">Careers (42 open roles)</div>
+                <div class="text-sm cursor-pointer">Blog — The Orbit</div>
+                <div class="text-sm cursor-pointer">Press</div>
+            </div>
+            <div class="md:col-span-2 space-y-3">
+                <div class="uppercase text-xs mb-4">Community</div>
+                <div class="text-sm cursor-pointer">Discord • 28k members</div>
+                <div class="text-sm cursor-pointer">YouTube • Vortex TV</div>
+                <div class="text-sm cursor-pointer">Status page</div>
+            </div>
+            <div class="md:col-span-2 text-[#00ff9f] flex flex-col justify-end">
+                MADE IN COLOMBO<br>WITH COSMIC ENERGY
+            </div>
+        </div>
+    </footer>
+
+    <!-- DEMO MODAL -->
+    <div onclick="if(event.target.id==='demo-modal')hideDemo()" id="demo-modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-2xl z-[9999] items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="w-full max-w-5xl bg-[#05050f] rounded-3xl p-8">
+            <div class="flex justify-between mb-8">
+                <div class="flex items-center gap-x-4 text-4xl heading-font">🌌 VORTEX STUDIO</div>
+                <button onclick="hideDemo()" class="text-5xl text-slate-400">×</button>
+            </div>
+            <div class="text-center py-12">
+                <h2 class="text-5xl font-semibold mb-4">Welcome, Mawantha</h2>
+                <p class="text-slate-400">Choose your first orbit to launch instantly</p>
+
+                <div class="grid grid-cols-3 gap-6 mt-16">
+                    <div onclick="fakeLaunch()" class="cursor-pointer tilt-card text-center glass rounded-3xl p-8 hover:border-[#00ff9f]">
+                        <div class="text-6xl mb-6">🤖</div>
+                        <div class="font-semibold text-2xl">AI Sales Swarm</div>
+                        <div class="text-xs text-slate-400">For Sri Lankan startups</div>
+                    </div>
+                    <div onclick="fakeLaunch()" class="cursor-pointer tilt-card text-center glass rounded-3xl p-8 hover:border-[#ff00ff]">
+                        <div class="text-6xl mb-6">📡</div>
+                        <div class="font-semibold text-2xl">Real-time Market Pulse</div>
+                        <div class="text-xs text-slate-400">Colombo + Global</div>
+                    </div>
+                    <div onclick="fakeLaunch()" class="cursor-pointer tilt-card text-center glass rounded-3xl p-8 hover:border-[#00ff9f]">
+                        <div class="text-6xl mb-6">🔐</div>
+                        <div class="font-semibold text-2xl">Quantum Security Shield</div>
+                        <div class="text-xs text-slate-400">One-click protection</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind init
+        function initTailwind() {
+            return {
+                config: (userConfig = {}) => ({
+                    content: [],
+                    theme: {
+                        extend: {}
+                    },
+                    plugins: [],
+                    ...userConfig
+                })
+            };
+        }
+
+        // Canvas particle system (cosmic stars + swirling particles)
+        function createHeroCanvas() {
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            let particles = [];
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 0.5;
+                    this.speedX = Math.random() * 0.8 - 0.4;
+                    this.speedY = Math.random() * 0.8 - 0.4;
+                    this.hue = Math.random() > 0.5 ? '#00ff9f' : '#ff00ff';
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.fillStyle = this.hue;
+                    ctx.globalAlpha = 0.7;
+                    ctx.fillRect(this.x, this.y, this.size, this.size);
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < 280; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animate() {
+                ctx.fillStyle = 'rgba(5, 5, 15, 0.12)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach((p, i) => {
+                    p.update();
+                    p.draw();
+
+                    // Connect nearby particles
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 110) {
+                            ctx.strokeStyle = p.hue;
+                            ctx.globalAlpha = (110 - distance) / 110 * 0.3;
+                            ctx.lineWidth = 0.6;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+                });
+                requestAnimationFrame(animate);
+            }
+
+            initParticles();
+            animate();
+
+            // Mouse interaction — particles follow cursor slightly
+            let mouse = {
+                x: 0,
+                y: 0
+            };
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                particles.forEach(p => {
+                    const dx = mouse.x - p.x;
+                    const dy = mouse.y - p.y;
+                    p.speedX += dx * 0.0008;
+                    p.speedY += dy * 0.0008;
+                });
+            });
+        }
+
+        // Simple Parallax Engine
+        function initParallax() {
+            const layers = document.querySelectorAll('.parallax-layer');
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                layers.forEach(layer => {
+                    const speed = layer.getAttribute('data-speed') || 0.3;
+                    const yPos = scrollY * speed;
+                    layer.style.transform = `translateY(${yPos}px)`;
+                });
+            });
+        }
+
+        // Scroll reveal
+        function initReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            document.querySelectorAll('.tilt-card, section > div').forEach(el => {
+                el.classList.add('reveal');
+                observer.observe(el);
+            });
+        }
+
+        function toggleMobile() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+
+        function navigateTo(section) {
+            document.getElementById(section).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function launchDemo() {
+            document.getElementById('demo-modal').style.display = 'flex';
+        }
+
+        function hideDemo() {
+            document.getElementById('demo-modal').style.display = 'none';
+        }
+
+        function fakeLaunch() {
+            hideDemo();
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position:fixed; bottom:30px; right:30px; background:#00ff9f; color:#05050f; padding:18px 28px; border-radius:9999px; font-weight:600; box-shadow:0 0 30px #00ff9f; z-index:99999;';
+            toast.innerHTML = '🚀 ORBIT LAUNCHED — LIVE IN 1.4 SECONDS';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3200);
+        }
+
+        function watchTrailer() {
+            alert('🎬 TRAILER PLAYING — Imagine breathtaking cosmic visuals of AI agents swirling around the planet in real-time.\n\n(Real video would play here in production)');
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            const form = document.getElementById('contact-form');
+            form.style.opacity = 0.4;
+
+            setTimeout(() => {
+                form.reset();
+                form.style.opacity = 1;
+                hideDemo();
+
+                const success = document.createElement('div');
+                success.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#05050f; border:3px solid #00ff9f; padding:40px 60px; border-radius:30px; text-align:center; z-index:100000; box-shadow:0 0 80px #00ff9f;';
+                success.innerHTML = `
+                    <h3 class="text-4xl font-semibold mb-4">MESSAGE RECEIVED</h3>
+                    <p class="text-slate-300">Our AI swarm has already begun forging your proposal.<br>Expect it in your inbox in under 9 minutes.</p>
+                    <button onclick="this.parentElement.remove()" class="mt-8 px-10 py-4 bg-[#00ff9f] text-black rounded-3xl font-semibold">BACK TO VORTEX</button>
+                `;
+                document.body.appendChild(success);
+            }, 900);
+        }
+
+        // Bootstrap everything
+        window.onload = () => {
+            initTailwind();
+            createHeroCanvas();
+            initParallax();
+            initReveal();
+
+            console.log('%c🌌 VORTEX — Completely redesigned with cosmic parallax, particle canvas, 3D tilt cards & magnetic effects. Ready for launch!', 'color:#00ff9f; font-size:14px; font-family:Space Grotesk');
+        };
+    </script>
+</body>
+
+</html>
