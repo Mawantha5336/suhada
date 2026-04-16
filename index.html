@@ -37,6 +37,64 @@
         .client-logo:hover { filter: grayscale(0%) brightness(1); }
         .pillar-card { border-left: 3px solid transparent; transition: all 0.3s; }
         .pillar-card:hover { border-left-color: #00ff9f; padding-left: 1.5rem; }
+
+        /* ===== LIGHT THEME ===== */
+        body.light { background-color: #f0f4f8; color: #1e293b; }
+
+        /* Navbar */
+        body.light nav { background: rgba(255,255,255,0.95) !important; border-color: rgba(0,0,0,0.1) !important; }
+        body.light nav a { color: #374151; }
+        body.light nav a:hover { color: #059669 !important; }
+        body.light nav h1 { color: #059669; text-shadow: none; }
+        body.light nav p { color: #6b7280; }
+        body.light #mobile-menu { background: rgba(255,255,255,0.97) !important; border-color: rgba(0,0,0,0.08) !important; }
+        body.light #mobile-menu a { color: #374151; }
+
+        /* Trust bar */
+        body.light .trust-bar { background: #e2e8f0 !important; border-color: rgba(0,0,0,0.1) !important; color: #64748b !important; }
+        body.light .trust-bar div { color: #64748b; }
+
+        /* Glass — everywhere EXCEPT inside #home */
+        body.light .glass { background: rgba(255,255,255,0.9) !important; backdrop-filter: blur(20px); color: #1e293b; }
+        body.light #home .glass { background: rgba(10,10,30,0.65) !important; color: #e2e8f0; }
+
+        /* Section backgrounds */
+        body.light section:not(#home) { background-color: transparent; }
+        body.light .bg-black\/40 { background-color: #e8eef5 !important; }
+        body.light .bg-black\/60 { background-color: #dde4ed !important; }
+        body.light footer { background-color: #1e293b !important; }
+
+        /* Text colors */
+        body.light .text-slate-400 { color: #64748b !important; }
+        body.light .text-slate-300 { color: #475569 !important; }
+        body.light .text-slate-200 { color: #1e293b !important; }
+        body.light .text-slate-500 { color: #94a3b8 !important; }
+
+        /* Borders */
+        body.light .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
+        body.light .border-white\/20 { border-color: rgba(0,0,0,0.12) !important; }
+        body.light .border-white\/30 { border-color: rgba(0,0,0,0.2) !important; }
+
+        /* Cards */
+        body.light .tilt-card { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        body.light #home .tilt-card { box-shadow: none; }
+
+        /* Form inputs */
+        body.light form input,
+        body.light form textarea,
+        body.light form select { color: #1e293b; }
+        body.light form input::placeholder,
+        body.light form textarea::placeholder { color: #94a3b8; }
+
+        /* Service items hover */
+        body.light .service-item:hover { color: #059669; }
+
+        /* Pillar card hover */
+        body.light .pillar-card:hover { border-left-color: #059669; }
+
+        /* Theme toggle button */
+        #theme-toggle { transition: all 0.3s; }
+        body.light #theme-toggle { background: #1e293b; color: #f0f4f8; }
     </style>
 </head>
 
@@ -61,6 +119,12 @@
                 <a onclick="navigateTo('contact')" class="hover:text-[#00ff9f] cursor-pointer">Contact</a>
             </div>
             <div class="flex items-center gap-x-4">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark theme"
+                    class="w-10 h-10 rounded-full glass border border-white/20 flex items-center justify-center text-lg hover:scale-110">
+                    <i id="theme-icon" class="fa-solid fa-sun"></i>
+                </button>
+
                 <button onclick="navigateTo('contact')" class="magnetic px-7 py-3 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black font-semibold rounded-3xl flex items-center gap-x-2 shadow-xl shadow-[#00ff9f]/40 text-sm">
                     GET A QUOTE <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -143,7 +207,7 @@
     </section>
 
     <!-- TRUST BAR -->
-    <div class="py-8 border-b border-white/10 bg-black/60">
+    <div class="trust-bar py-8 border-b border-white/10 bg-black/60">
         <div class="max-w-screen-2xl mx-auto px-8 flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-slate-400 text-sm font-medium">
             <div>10+ YEARS OF EXCELLENCE</div>
             <div>500+ HAPPY CLIENTS</div>
@@ -656,6 +720,22 @@
 
         function toggleMobile() { const menu = document.getElementById('mobile-menu'); const icon = document.getElementById('menu-icon'); menu.classList.toggle('hidden'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-xmark'); }
 
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            const isLight = body.classList.toggle('light');
+            icon.className = isLight ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            localStorage.setItem('sg-theme', isLight ? 'light' : 'dark');
+        }
+
+        function initTheme() {
+            const saved = localStorage.getItem('sg-theme');
+            if (saved === 'light') {
+                document.body.classList.add('light');
+                document.getElementById('theme-icon').className = 'fa-solid fa-moon';
+            }
+        }
+
         function navigateTo(section) { document.getElementById(section).scrollIntoView({ behavior: 'smooth' }); }
 
         function handleContact(e) {
@@ -672,7 +752,7 @@
         }
 
         window.onload = () => {
-            createHeroCanvas(); initParallax(); initReveal();
+            initTheme(); createHeroCanvas(); initParallax(); initReveal();
             console.log('%c🎨 Suhada Graphics — Total Printing & Graphic Design. Colombo, Sri Lanka.', 'color:#00ff9f; font-size:14px; font-family:Space Grotesk');
         };
     </script>
