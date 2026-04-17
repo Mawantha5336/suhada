@@ -33,6 +33,8 @@
         .service-item:hover { color: #00ff9f; transform: translateX(6px); }
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1.5rem; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 1.5rem; }
+        .shorts-wrapper { position: relative; padding-bottom: 177.78%; height: 0; overflow: hidden; border-radius: 1.5rem; max-width: 320px; margin: 0 auto; }
+        .shorts-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 1.5rem; }
         .client-logo { filter: grayscale(100%) brightness(0.6); transition: all 0.3s; }
         .client-logo:hover { filter: grayscale(0%) brightness(1); }
         .pillar-card { border-left: 3px solid transparent; transition: all 0.3s; }
@@ -587,6 +589,46 @@
                 </div>
             </div>
         </div>
+
+        <!-- Shorts row -->
+        <div class="mt-12 md:mt-16">
+            <div class="flex items-center gap-3 justify-center mb-8 reveal">
+                <div style="height:1px;width:60px;background:linear-gradient(to right,transparent,rgba(0,255,159,0.4));"></div>
+                <span class="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-slate-400 px-4 py-2 rounded-full border border-white/10">
+                    <i class="fa-brands fa-youtube text-red-500"></i> Suhada Graphics Shorts
+                </span>
+                <div style="height:1px;width:60px;background:linear-gradient(to left,transparent,rgba(0,255,159,0.4));"></div>
+            </div>
+            <div class="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
+                <div class="reveal">
+                    <div class="shorts-wrapper border border-[#00ff9f]/25 shadow-2xl shadow-[#00ff9f]/10">
+                        <iframe src="https://www.youtube.com/embed/O-CJcSSkX1Y?rel=0&modestbranding=1"
+                                title="Suhada Graphics Short 1"
+                                allowfullscreen
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-red-400 mb-2"><i class="fa-brands fa-youtube"></i> Shorts</span>
+                        <h4 class="font-semibold">Suhada Graphics</h4>
+                        <p class="text-slate-400 text-sm mt-1">Our work in action</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="shorts-wrapper border border-[#ff00ff]/25 shadow-2xl shadow-[#ff00ff]/10">
+                        <iframe src="https://www.youtube.com/embed/XnYWDR6nW8Q?rel=0&modestbranding=1"
+                                title="Suhada Graphics Short 2"
+                                allowfullscreen
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-red-400 mb-2"><i class="fa-brands fa-youtube"></i> Shorts</span>
+                        <h4 class="font-semibold">Suhada Graphics</h4>
+                        <p class="text-slate-400 text-sm mt-1">Printing excellence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- CLIENTS SECTION -->
