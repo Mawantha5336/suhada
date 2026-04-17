@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Suhada Graphics — Watch our service showcase videos. Sublimation mugs, printing, tags and more.">
+    <title>Videos — Suhada Graphics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&display=swap');
+
+        :root { --primary: #00ff9f; --accent: #ff00ff; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #05050f;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        .neon-glow { text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary), 0 0 50px #ff00ff; }
+        .glass {
+            background: rgba(10, 10, 30, 0.70);
+            backdrop-filter: blur(20px);
+        }
+
+        /* ── Navbar ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* ── Dropdown ── */
+        .nav-dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 12px); left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: rgba(8,8,28,0.98);
+            border: 1px solid rgba(0,255,159,0.18);
+            border-radius: 14px;
+            min-width: 190px;
+            padding: 8px;
+            opacity: 0; pointer-events: none;
+            transition: all 0.22s cubic-bezier(.4,0,.2,1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 30px rgba(0,255,159,0.06);
+        }
+        .nav-dropdown:hover .dropdown-menu,
+        .nav-dropdown:focus-within .dropdown-menu {
+            opacity: 1; pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-menu a {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px; border-radius: 10px;
+            font-size: 13px; font-weight: 500;
+            color: #cbd5e1;
+            transition: all 0.18s;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover { background: rgba(0,255,159,0.1); color: #00ff9f; }
+        .dropdown-menu a .icon-wrap {
+            width: 28px; height: 28px;
+            background: rgba(0,255,159,0.1);
+            border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px;
+        }
+        .dropdown-menu a:hover .icon-wrap { background: rgba(0,255,159,0.2); color: #00ff9f; }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 420px;
+            background: radial-gradient(ellipse at 50% 0%, #0d0d3a 0%, #05050f 68%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 120px 24px 60px;
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(circle at 15% 80%, rgba(0,255,159,0.09) 0%, transparent 50%),
+                radial-gradient(circle at 85% 20%, rgba(255,0,255,0.09) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .scan-line {
+            position: absolute; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0,255,159,0.5), transparent);
+            animation: scan 4s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes scan {
+            0%   { top: 0%; opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* ── Floating orbs ── */
+        .orb {
+            position: absolute; border-radius: 50%;
+            filter: blur(90px); pointer-events: none;
+        }
+
+        /* ── Reveal ── */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .revealed { opacity: 1; transform: translateY(0); }
+
+        /* ── Filter pills ── */
+        .filter-pill {
+            display: inline-flex; align-items: center; gap-: 6px;
+            padding: 8px 20px; border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            font-size: 13px; font-weight: 500; cursor: pointer;
+            color: #94a3b8; background: rgba(255,255,255,0.03);
+            transition: all 0.22s; user-select: none;
+        }
+        .filter-pill:hover { border-color: rgba(0,255,159,0.35); color: #00ff9f; }
+        .filter-pill.active {
+            background: linear-gradient(135deg, rgba(0,255,159,0.18), rgba(255,0,255,0.12));
+            border-color: rgba(0,255,159,0.5);
+            color: #00ff9f;
+            box-shadow: 0 0 18px rgba(0,255,159,0.12);
+        }
+
+        /* ══ VIDEO CARD ══ */
+        .video-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(12,12,35,0.85);
+            border: 1px solid rgba(255,255,255,0.07);
+            transition: all 0.35s cubic-bezier(.4,0,.2,1);
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .video-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(0,255,159,0.04), transparent 60%);
+            opacity: 0; transition: opacity 0.35s;
+            pointer-events: none; z-index: 0;
+        }
+        .video-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0,255,159,0.28);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 30px rgba(0,255,159,0.08);
+        }
+        .video-card:hover::before { opacity: 1; }
+
+        .video-frame-wrap {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 */
+            background: #000;
+            overflow: hidden;
+        }
+        .video-frame-wrap iframe {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        /* Glow bar below thumb */
+        .video-frame-wrap::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ff9f, #ff00ff, #00bfff);
+        }
+
+        .video-info { padding: 18px 20px 20px; position: relative; z-index: 1; }
+        .video-info .cat-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 10px; border-radius: 9999px;
+            background: rgba(0,255,159,0.12);
+            color: #00ff9f; border: 1px solid rgba(0,255,159,0.22);
+            margin-bottom: 10px;
+        }
+        .video-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px; font-weight: 700;
+            color: #f1f5f9; line-height: 1.35;
+            margin-bottom: 6px;
+        }
+        .video-info p {
+            font-size: 13px; color: #64748b; line-height: 1.6;
+        }
+
+        /* ── Featured card (spans 2 cols on wide screens) ── */
+        .video-card.featured { grid-column: span 2; }
+        @media (max-width: 767px) { .video-card.featured { grid-column: span 1; } }
+
+        /* ── Grid ── */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) { .video-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
+        @media (min-width: 1200px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        /* ── CTA ── */
+        .cta-strip {
+            border-radius: 24px;
+            border: 1px solid rgba(0,255,159,0.15);
+            background: radial-gradient(ellipse at center, rgba(0,255,159,0.06) 0%, rgba(10,10,30,0.8) 70%);
+        }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 9999px;
+            background: linear-gradient(135deg, #00ff9f, #ff00ff);
+            color: #000; font-weight: 700; font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s; box-shadow: 0 0 24px rgba(0,255,159,0.35);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0,255,159,0.5); }
+
+        /* ── Floating particles ── */
+        .particle {
+            position: fixed; border-radius: 50%;
+            animation: float-up linear infinite; opacity: 0.4;
+            pointer-events: none;
+        }
+        @keyframes float-up {
+            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+            10%  { opacity: 0.4; }
+            90%  { opacity: 0.2; }
+            100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+        }
+
+        /* ── Channel strip ── */
+        .channel-strip {
+            background: linear-gradient(135deg, rgba(0,255,159,0.07) 0%, rgba(255,0,255,0.05) 100%);
+            border: 1px solid rgba(0,255,159,0.14);
+            border-radius: 18px;
+            padding: 20px 28px;
+            display: flex; align-items: center; gap: 16px;
+        }
+
+        /* ── Mobile nav ── */
+        #mobile-menu {
+            display: none; flex-direction: column; gap: 4px;
+            position: absolute; top: 100%; left: 0; right: 0;
+            background: rgba(8,8,26,0.98); backdrop-filter: blur(20px);
+            padding: 12px 24px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        #mobile-menu.open { display: flex; }
+        #mobile-menu a, #mobile-menu .mob-sub {
+            padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #cbd5e1; font-size: 14px; font-weight: 500;
+            text-decoration: none; display: flex; align-items: center; gap: 8px;
+        }
+        #mobile-menu a:last-child { border-bottom: none; }
+        #mobile-menu a:hover { color: #00ff9f; }
+        .mob-gallery-sub { padding-left: 20px !important; font-size: 13px !important; color: #94a3b8 !important; }
+    </style>
+</head>
+<body>
+
+<!-- ══ PARTICLES ══ -->
+<div id="particles-wrap" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="glass">
+    <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between relative">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 no-underline">
+            <img src="/logo.jpg" alt="Logo" class="w-11 h-11 rounded-full object-cover border-2 border-[#00ff9f]/40">
+            <div>
+                <h1 class="heading-font text-lg tracking-tight neon-glow leading-none">Suhada Graphics</h1>
+                <p class="text-[9px] text-slate-500 tracking-widest uppercase">Total Printing & Graphic Design</p>
+            </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="/" class="hover:text-[#00ff9f] transition-colors">Home</a>
+            <a href="/services.html" class="hover:text-[#00ff9f] transition-colors">Services</a>
+
+            <!-- Gallery dropdown -->
+            <div class="nav-dropdown">
+                <button class="flex items-center gap-1.5 text-[#00ff9f] focus:outline-none">
+                    Gallery <i class="fa-solid fa-chevron-down text-[9px] mt-0.5 opacity-70"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="/services.html">
+                        <span class="icon-wrap"><i class="fa-solid fa-images"></i></span>
+                        Photo Gallery
+                    </a>
+                    <a href="/videos.html">
+                        <span class="icon-wrap text-[#ff00ff]" style="background:rgba(255,0,255,0.12)"><i class="fa-brands fa-youtube"></i></span>
+                        Videos
+                    </a>
+                </div>
+            </div>
+
+            <a href="/#contact" class="hover:text-[#00ff9f] transition-colors">Contact</a>
+        </div>
+
+        <!-- CTA + mobile toggle -->
+        <div class="flex items-center gap-3">
+            <a href="/" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black text-sm font-bold rounded-3xl shadow-lg shadow-[#00ff9f]/30 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-arrow-left text-xs"></i> Back to Home
+            </a>
+            <button id="mob-toggle" class="md:hidden text-slate-300 text-xl focus:outline-none" aria-label="Menu">
+                <i class="fa-solid fa-bars" id="mob-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu">
+        <a href="/">Home</a>
+        <a href="/services.html">Services</a>
+        <span class="mob-sub" style="padding:10px 0 4px; border-bottom:none; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#475569;">Gallery</span>
+        <a href="/services.html" class="mob-gallery-sub"><i class="fa-solid fa-images fa-fw"></i> Photo Gallery</a>
+        <a href="/videos.html" class="mob-gallery-sub" style="color:#00ff9f"><i class="fa-brands fa-youtube fa-fw"></i> Videos</a>
+        <a href="/#contact">Contact</a>
+        <a href="/" class="mt-2 justify-center px-6 py-3 bg-gradient-to-r from-[#00ff9f] to-[#ff00ff] text-black font-bold rounded-2xl" style="border:none">← Back to Home</a>
+    </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+    <div class="scan-line"></div>
+    <div class="orb w-96 h-96 bg-[#00ff9f]" style="top:-100px;left:-120px;opacity:0.05;"></div>
+    <div class="orb w-72 h-72 bg-[#ff00ff]" style="bottom:-80px;right:-80px;opacity:0.06;"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto">
+        <p class="inline-flex items-center gap-2 text-[#00ff9f] text-xs font-bold tracking-widest uppercase mb-5 px-4 py-2 rounded-full border border-[#00ff9f]/25 bg-[#00ff9f]/08">
+            <i class="fa-brands fa-youtube text-red-500"></i> Watch Us Work
+        </p>
+        <h1 class="heading-font text-4xl md:text-6xl font-extrabold mb-5 leading-tight">
+            Our Work, <span class="neon-glow text-[#00ff9f]">In Motion</span>
+        </h1>
+        <p class="text-slate-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
+            Watch behind-the-scenes process videos, product showcases and print reveals — straight from our studio in Colombo.
+        </p>
+
+        <!-- YouTube subscribe strip -->
+        <div class="mt-8 inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/4 border border-white/10">
+            <div class="w-9 h-9 rounded-xl bg-red-600 flex items-center justify-center flex-shrink-0">
+                <i class="fa-brands fa-youtube text-white text-sm"></i>
+            </div>
+            <span class="text-sm text-slate-300">Subscribe to <strong class="text-white">Suhada Graphics</strong> on YouTube</span>
+            <a href="https://www.youtube.com/@SuhadaGraphics" target="_blank" rel="noopener"
+               class="ml-2 px-4 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-xs font-bold transition-colors">
+                Subscribe
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ══ MAIN ══ -->
+<main class="max-w-screen-xl mx-auto px-5 md:px-10 py-14">
+
+    <!-- Filter pills -->
+    <div class="flex flex-wrap gap-3 mb-10 reveal">
+        <button class="filter-pill active" data-filter="all"><i class="fa-solid fa-grip text-xs mr-1"></i>All Videos</button>
+        <button class="filter-pill" data-filter="mug"><i class="fa-solid fa-mug-hot text-xs mr-1"></i>Mugs</button>
+        <button class="filter-pill" data-filter="print"><i class="fa-solid fa-print text-xs mr-1"></i>Printing</button>
+        <button class="filter-pill" data-filter="tag"><i class="fa-solid fa-tag text-xs mr-1"></i>Tags & Bags</button>
+        <button class="filter-pill" data-filter="design"><i class="fa-solid fa-pen-nib text-xs mr-1"></i>Design</button>
+        <button class="filter-pill" data-filter="process"><i class="fa-solid fa-clapperboard text-xs mr-1"></i>Process</button>
+    </div>
+
+    <!-- Video grid -->
+    <div class="video-grid" id="video-grid">
+
+        <!-- 1 · Sublimation Mug Process — FEATURED -->
+        <div class="video-card featured reveal" data-category="mug">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/xvFZjo5PgG0?rel=0&modestbranding=1"
+                        title="Sublimation Mug Printing Process"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-mug-hot"></i> Mugs</span>
+                <h3>Sublimation Mug Printing — Full Process</h3>
+                <p>Watch the complete sublimation printing process from design to finished personalised mug, including heat press and peeling.</p>
+            </div>
+        </div>
+
+        <!-- 2 · Custom Mug Wrap Design -->
+        <div class="video-card reveal" data-category="mug">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/sJQCGWFKkxI?rel=0&modestbranding=1"
+                        title="Custom Mug Wrap Design"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-mug-hot"></i> Mugs</span>
+                <h3>Custom Mug Wrap Design Reveal</h3>
+                <p>Beautiful 360° full-wraparound design reveal on a premium ceramic mug with vivid sublimation colours.</p>
+            </div>
+        </div>
+
+        <!-- 3 · Business Card Print -->
+        <div class="video-card reveal" data-category="print">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g?rel=0&modestbranding=1"
+                        title="Business Card Printing"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-id-card"></i> Printing</span>
+                <h3>Premium Business Card Print Run</h3>
+                <p>Offset and digital printing of premium business cards — lamination, embossing and finishing in action.</p>
+            </div>
+        </div>
+
+        <!-- 4 · Hang Tag Manufacturing -->
+        <div class="video-card reveal" data-category="tag">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/dWRTm1cFEhI?rel=0&modestbranding=1"
+                        title="Hang Tag Manufacturing"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-tag"></i> Tags</span>
+                <h3>Clothing Hang Tag Production</h3>
+                <p>From design file to finished hang tags — die-cutting, punching and string-fitting for fashion brands.</p>
+            </div>
+        </div>
+
+        <!-- 5 · Graphic Design Process -->
+        <div class="video-card reveal" data-category="design">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/YqeW9_5kURI?rel=0&modestbranding=1"
+                        title="Graphic Design Process"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-pen-nib"></i> Design</span>
+                <h3>Brand Identity Design Process</h3>
+                <p>Watch how we craft stunning brand identities — logo, colour palette, typography and final brand board.</p>
+            </div>
+        </div>
+
+        <!-- 6 · Paper Bag Making -->
+        <div class="video-card reveal" data-category="tag">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/gGJUbJQSnkQ?rel=0&modestbranding=1"
+                        title="Paper Bag Making"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-bag-shopping"></i> Paper Bags</span>
+                <h3>Luxury Paper Bag Production</h3>
+                <p>Custom-printed luxury paper bags — from design to laminated handles, ready for fashion and retail clients.</p>
+            </div>
+        </div>
+
+        <!-- 7 · Leaflet & Booklet Print — FEATURED -->
+        <div class="video-card featured reveal" data-category="print">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U?rel=0&modestbranding=1"
+                        title="Leaflet and Booklet Printing"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-print"></i> Printing</span>
+                <h3>Leaflets, Flyers & Booklet Print</h3>
+                <p>High-volume leaflet and booklet printing — folding, stitching and finishing for corporate marketing campaigns.</p>
+            </div>
+        </div>
+
+        <!-- 8 · Heat Press Process -->
+        <div class="video-card reveal" data-category="process">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/uXP7SbPGCNk?rel=0&modestbranding=1"
+                        title="Heat Press Process"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-clapperboard"></i> Process</span>
+                <h3>Heat Press & Sublimation Behind the Scenes</h3>
+                <p>Studio walkthrough — our heat press machines, sublimation setup and how we ensure perfect colour transfers every time.</p>
+            </div>
+        </div>
+
+        <!-- 9 · Rubber Stamps -->
+        <div class="video-card reveal" data-category="process">
+            <div class="video-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/YSTdLHrFnek?rel=0&modestbranding=1"
+                        title="Custom Rubber Stamps"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+                <span class="cat-badge"><i class="fa-solid fa-stamp"></i> Process</span>
+                <h3>Custom Rubber Stamp Making</h3>
+                <p>See how we produce precision custom rubber stamps — from artwork to laser-engraved finished stamp.</p>
+            </div>
+        </div>
+
+    </div><!-- /video-grid -->
+
+    <!-- ══ CTA ══ -->
+    <div class="cta-strip mt-20 p-10 md:p-14 text-center reveal">
+        <p class="text-[#00ff9f] text-xs font-semibold tracking-widest uppercase mb-3">Got a project in mind?</p>
+        <h3 class="heading-font text-3xl md:text-4xl font-bold mb-4 text-white">
+            Let's Make Something <span class="neon-glow text-[#00ff9f]">Amazing</span>
+        </h3>
+        <p class="text-slate-400 max-w-xl mx-auto mb-8 text-sm leading-relaxed">
+            From design to delivery — fast, affordable and professional printing in Colombo, Sri Lanka.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/#contact" class="btn-primary">
+                <i class="fa-solid fa-paper-plane"></i> Get a Free Quote
+            </a>
+            <a href="/services.html" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-slate-300 text-sm font-semibold hover:border-[#00ff9f]/40 hover:text-[#00ff9f] transition-all">
+                <i class="fa-solid fa-images text-xs"></i> View Photo Gallery
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="bg-[#030309] border-t border-white/5 py-8 text-center text-slate-600 text-xs">
+    <p>&copy; 2025 Suhada Graphics — Total Printing &amp; Graphic Design, Colombo, Sri Lanka.</p>
+    <p class="mt-1">+11-2860-991 &nbsp;·&nbsp; suhagraphics145@gmail.com</p>
+</footer>
+
+<!-- ══ SCRIPTS ══ -->
+<script>
+    /* ── Particles ── */
+    (function () {
+        const wrap = document.getElementById('particles-wrap');
+        const colors = ['#00ff9f', '#ff00ff', '#00bfff'];
+        for (let i = 0; i < 18; i++) {
+            const el = document.createElement('div');
+            el.className = 'particle';
+            const size = Math.random() * 3 + 2;
+            el.style.cssText = `
+                width:${size}px; height:${size}px;
+                background:${colors[Math.floor(Math.random() * colors.length)]};
+                left:${Math.random() * 100}vw;
+                animation-duration:${Math.random() * 12 + 8}s;
+                animation-delay:${Math.random() * 10}s;
+            `;
+            wrap.appendChild(el);
+        }
+    })();
+
+    /* ── Scroll reveal ── */
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('revealed'), idx * 90);
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ── Filter pills ── */
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.video-card[data-category]');
+    pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            const filter = pill.dataset.filter;
+            cards.forEach(card => {
+                const match = filter === 'all' || card.dataset.category === filter;
+                card.style.display = match ? '' : 'none';
+            });
+        });
+    });
+
+    /* ── Mobile menu ── */
+    const toggle = document.getElementById('mob-toggle');
+    const menu   = document.getElementById('mobile-menu');
+    const icon   = document.getElementById('mob-icon');
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        icon.className = menu.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    });
+</script>
+</body>
+</html>
