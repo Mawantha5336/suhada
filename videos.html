@@ -193,14 +193,33 @@
         .video-card.featured { grid-column: span 2; }
         @media (max-width: 767px) { .video-card.featured { grid-column: span 1; } }
 
+        /* ── Shorts frame (9:16 vertical) ── */
+        .shorts-frame-wrap {
+            position: relative;
+            padding-top: 177.78%;
+            background: #000;
+            overflow: hidden;
+        }
+        .shorts-frame-wrap iframe {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .shorts-frame-wrap::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ff9f, #ff00ff, #00bfff);
+        }
+
         /* ── Grid ── */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
             gap: 1.5rem;
         }
-        @media (min-width: 768px) { .video-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
-        @media (min-width: 1200px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 768px) { .video-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+        @media (min-width: 1200px) { .video-grid { grid-template-columns: repeat(5, 1fr); } }
 
         /* ── CTA ── */
         .cta-strip {
@@ -371,138 +390,78 @@
     <!-- Video grid -->
     <div class="video-grid" id="video-grid">
 
-        <!-- 1 · Sublimation Mug Process — FEATURED -->
-        <div class="video-card featured reveal" data-category="mug">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/xvFZjo5PgG0?rel=0&modestbranding=1"
-                        title="Sublimation Mug Printing Process"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-mug-hot"></i> Mugs</span>
-                <h3>Sublimation Mug Printing — Full Process</h3>
-                <p>Watch the complete sublimation printing process from design to finished personalised mug, including heat press and peeling.</p>
-            </div>
-        </div>
-
-        <!-- 2 · Custom Mug Wrap Design -->
+        <!-- 1 -->
         <div class="video-card reveal" data-category="mug">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/sJQCGWFKkxI?rel=0&modestbranding=1"
-                        title="Custom Mug Wrap Design"
+            <div class="shorts-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/XnYWDR6nW8Q?rel=0&modestbranding=1"
+                        title="Suhada Graphics — Paper Bag Showcase"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-mug-hot"></i> Mugs</span>
-                <h3>Custom Mug Wrap Design Reveal</h3>
-                <p>Beautiful 360° full-wraparound design reveal on a premium ceramic mug with vivid sublimation colours.</p>
+                <span class="cat-badge"><i class="fa-brands fa-youtube"></i> Shorts</span>
+                <h3>Paper Bag Showcase</h3>
+                <p>Custom printed luxury paper bags from Suhada Graphics — vivid colour and premium finish.</p>
             </div>
         </div>
 
-        <!-- 3 · Business Card Print -->
+        <!-- 2 -->
         <div class="video-card reveal" data-category="print">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g?rel=0&modestbranding=1"
-                        title="Business Card Printing"
+            <div class="shorts-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/O-CJcSSkX1Y?rel=0&modestbranding=1"
+                        title="Suhada Graphics — Business Card Print"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-id-card"></i> Printing</span>
-                <h3>Premium Business Card Print Run</h3>
-                <p>Offset and digital printing of premium business cards — lamination, embossing and finishing in action.</p>
+                <span class="cat-badge"><i class="fa-brands fa-youtube"></i> Shorts</span>
+                <h3>Business Card Printing</h3>
+                <p>Precision printed business cards — clean finishes and bold colours straight from our studio.</p>
             </div>
         </div>
 
-        <!-- 4 · Hang Tag Manufacturing -->
-        <div class="video-card reveal" data-category="tag">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/dWRTm1cFEhI?rel=0&modestbranding=1"
-                        title="Hang Tag Manufacturing"
+        <!-- 3 -->
+        <div class="video-card reveal" data-category="mug">
+            <div class="shorts-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/YvyqSYXl4hw?rel=0&modestbranding=1"
+                        title="Suhada Graphics — Mug Printing"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-tag"></i> Tags</span>
-                <h3>Clothing Hang Tag Production</h3>
-                <p>From design file to finished hang tags — die-cutting, punching and string-fitting for fashion brands.</p>
+                <span class="cat-badge"><i class="fa-brands fa-youtube"></i> Shorts</span>
+                <h3>Personalised Mug Print</h3>
+                <p>Sublimation printed mugs with vivid full-colour designs — perfect corporate and gift items.</p>
             </div>
         </div>
 
-        <!-- 5 · Graphic Design Process -->
-        <div class="video-card reveal" data-category="design">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/YqeW9_5kURI?rel=0&modestbranding=1"
-                        title="Graphic Design Process"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-pen-nib"></i> Design</span>
-                <h3>Brand Identity Design Process</h3>
-                <p>Watch how we craft stunning brand identities — logo, colour palette, typography and final brand board.</p>
-            </div>
-        </div>
-
-        <!-- 6 · Paper Bag Making -->
-        <div class="video-card reveal" data-category="tag">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/gGJUbJQSnkQ?rel=0&modestbranding=1"
-                        title="Paper Bag Making"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-bag-shopping"></i> Paper Bags</span>
-                <h3>Luxury Paper Bag Production</h3>
-                <p>Custom-printed luxury paper bags — from design to laminated handles, ready for fashion and retail clients.</p>
-            </div>
-        </div>
-
-        <!-- 7 · Leaflet & Booklet Print — FEATURED -->
-        <div class="video-card featured reveal" data-category="print">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U?rel=0&modestbranding=1"
-                        title="Leaflet and Booklet Printing"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-print"></i> Printing</span>
-                <h3>Leaflets, Flyers & Booklet Print</h3>
-                <p>High-volume leaflet and booklet printing — folding, stitching and finishing for corporate marketing campaigns.</p>
-            </div>
-        </div>
-
-        <!-- 8 · Heat Press Process -->
+        <!-- 4 -->
         <div class="video-card reveal" data-category="process">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/uXP7SbPGCNk?rel=0&modestbranding=1"
-                        title="Heat Press Process"
+            <div class="shorts-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/-nCzPtHWlwE?rel=0&modestbranding=1"
+                        title="Suhada Graphics — Studio Process"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-clapperboard"></i> Process</span>
-                <h3>Heat Press & Sublimation Behind the Scenes</h3>
-                <p>Studio walkthrough — our heat press machines, sublimation setup and how we ensure perfect colour transfers every time.</p>
+                <span class="cat-badge"><i class="fa-brands fa-youtube"></i> Shorts</span>
+                <h3>Studio Process</h3>
+                <p>A peek inside our Colombo studio — see how your orders come to life from start to finish.</p>
             </div>
         </div>
 
-        <!-- 9 · Rubber Stamps -->
-        <div class="video-card reveal" data-category="process">
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/YSTdLHrFnek?rel=0&modestbranding=1"
-                        title="Custom Rubber Stamps"
+        <!-- 5 -->
+        <div class="video-card reveal" data-category="print">
+            <div class="shorts-frame-wrap">
+                <iframe src="https://www.youtube.com/embed/5KhcYEB4T_4?rel=0&modestbranding=1"
+                        title="Suhada Graphics — Printing Excellence"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="video-info">
-                <span class="cat-badge"><i class="fa-solid fa-stamp"></i> Process</span>
-                <h3>Custom Rubber Stamp Making</h3>
-                <p>See how we produce precision custom rubber stamps — from artwork to laser-engraved finished stamp.</p>
+                <span class="cat-badge"><i class="fa-brands fa-youtube"></i> Shorts</span>
+                <h3>Printing Excellence</h3>
+                <p>Premium quality printing work — delivering bold, accurate prints for every client order.</p>
             </div>
         </div>
 
