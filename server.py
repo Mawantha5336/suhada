@@ -10,7 +10,7 @@ from email.mime.multipart import MIMEMultipart
 PORT = 5000
 HOST = "0.0.0.0"
 
-RECIPIENT_EMAIL = "suhagraphics145@gmail.com"
+RECIPIENT_EMAIL = "suhadagraphics145@gmail.com"
 SENDER_EMAIL = os.environ.get("GMAIL_ADDRESS", "")
 SENDER_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD", "")
 
